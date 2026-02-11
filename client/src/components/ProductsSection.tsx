@@ -12,6 +12,7 @@ import ProductDetailModal, {
 import ProductVideoHover from "@/components/ProductVideoHover";
 import { addRecentlyViewed } from "@/components/RecentlyViewed";
 import { useDarkMode } from "@/hooks/useDarkMode";
+import { CompareCheckbox, comparableProducts } from "@/components/ProductComparison";
 import { useParallax } from "@/hooks/useParallax";
 
 const PRODUCT_IMAGE =
@@ -334,6 +335,12 @@ export default function ProductsSection() {
                   {/* Video hover container */}
                   <div className={`relative overflow-hidden mb-4 ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.93_0.02_75)]"} rounded-lg`}>
                     {/* New Arrivals badge */}
+                    {/* Compare checkbox */}
+                    <div className="absolute top-3 right-3 z-10" onClick={(e) => e.stopPropagation()}>
+                      <CompareCheckbox
+                        product={comparableProducts.find((cp) => cp.name === product.name)!}
+                      />
+                    </div>
                     {product.isNew && (
                       <div className="absolute top-3 left-3 z-10">
                         <span

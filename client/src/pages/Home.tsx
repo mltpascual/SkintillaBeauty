@@ -17,10 +17,12 @@ import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import RecentlyViewed from "@/components/RecentlyViewed";
 import LoadingScreen from "@/components/LoadingScreen";
+import { CompareProvider } from "@/components/ProductComparison";
 
 export default function Home() {
   return (
     <AnnouncementBarProvider>
+      <CompareProvider>
       <LoadingScreen />
       <a
         href="#main-content"
@@ -49,6 +51,7 @@ export default function Home() {
         <ScrollToTop />
         <RecentlyViewed />
       </div>
+      </CompareProvider>
     </AnnouncementBarProvider>
   );
 }
