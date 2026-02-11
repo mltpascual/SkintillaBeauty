@@ -107,3 +107,23 @@ temp/
 
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
+
+# Manus development artifacts
+.manus-logs/
+client/public/__manus__/
+
+# Development notes (not needed in production)
+ideas.md
+image-urls.md
+review-notes.md
+todo.md
+social-urls.md
+video-urls.md
+fix-notes.md
+dark-mode-review.md
+review-round3.md
+review-round4.md
+mobile-audit.md
+
+# Screenshots
+screenshots/
