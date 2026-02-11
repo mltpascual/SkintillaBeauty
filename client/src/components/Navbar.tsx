@@ -5,6 +5,7 @@
  * Typography: Cormorant Garamond for brand name, Jost for nav links
  */
 import { useState, useEffect, useCallback } from "react";
+import { useAnnouncementBar } from "@/components/AnnouncementBar";
 
 const navLinks = [
   { label: "Our Story", href: "#story" },
@@ -21,6 +22,7 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { visible: announcementVisible } = useAnnouncementBar();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -51,11 +53,12 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? "bg-[oklch(0.96_0.015_80/0.92)] backdrop-blur-md shadow-[0_1px_0_oklch(0.72_0.10_80/0.3)]"
             : "bg-transparent"
         }`}
+        style={{ top: announcementVisible ? "36px" : "0px" }}
       >
         <nav className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
           {/* Brand */}

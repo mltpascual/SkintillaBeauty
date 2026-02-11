@@ -1,4 +1,4 @@
-import AnnouncementBar from "@/components/AnnouncementBar";
+import { AnnouncementBarProvider } from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
@@ -17,23 +17,24 @@ import RecentlyViewed from "@/components/RecentlyViewed";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      <AnnouncementBar />
-      <Navbar />
-      <HeroSection />
-      <StorySection />
-      <ProductsSection />
-      <IngredientsSection />
-      <SkincareQuiz />
-      <BundlesSection />
-      <BeforeAfterGallery />
-      <SocialFeed />
-      <FAQSection />
-      <LoyaltyTeaser />
-      <TestimonialsSection />
-      <Footer />
-      <ScrollToTop />
-      <RecentlyViewed />
-    </div>
+    <AnnouncementBarProvider>
+      <div className="min-h-screen">
+        <Navbar />
+        <HeroSection />
+        <StorySection />
+        <ProductsSection />
+        <IngredientsSection />
+        <SkincareQuiz />
+        <BundlesSection />
+        <BeforeAfterGallery />
+        <SocialFeed />
+        <FAQSection />
+        <LoyaltyTeaser />
+        <TestimonialsSection />
+        <Footer />
+        <ScrollToTop />
+        <RecentlyViewed />
+      </div>
+    </AnnouncementBarProvider>
   );
 }

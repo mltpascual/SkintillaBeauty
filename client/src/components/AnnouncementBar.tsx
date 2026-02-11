@@ -1,10 +1,10 @@
 /*
  * Skintilla Beauty — Botanical Atelier Design
- * AnnouncementBar: Slim rotating banner at the top of the page
+ * AnnouncementBar: Slim rotating banner fixed at the very top of the page
  * Cycles through promotions with smooth crossfade animation
  * Warm gold/olive palette, Jost typography
  */
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, createContext, useContext } from "react";
 import { X } from "lucide-react";
 
 const announcements = [
@@ -14,9 +14,29 @@ const announcements = [
   { text: "Complimentary samples with every purchase", icon: "✦" },
 ];
 
-export default function AnnouncementBar() {
-  const [currentIndex, setCurrentIndex] = useState(0);
+// Context to share announcement bar visibility with Navbar
+const AnnouncementContext = createContext<{ visible: boolean }>({ visible: true });
+export const useAnnouncementBar = () => useContext(AnnouncementContext);
+
+export function AnnouncementBarProvider({ children }: { children: React.ReactNode }) {
   const [isVisible, setIsVisible] = useState(true);
+
+  return (
+    <AnnouncementContext.Provider value={{ visible: isVisible }}>
+      <AnnouncementBarInner isVisible={isVisible} setIsVisible={setIsVisible} />
+      {children}
+    </AnnouncementContext.Provider>
+  );
+}
+
+function AnnouncementBarInner({
+  isVisible,
+  setIsVisible,
+}: {
+  isVisible: boolean;
+  setIsVisible: (v: boolean) => void;
+}) {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
 
   const nextAnnouncement = useCallback(() => {
@@ -39,7 +59,7 @@ export default function AnnouncementBar() {
 
   return (
     <div
-      className="relative z-[60] w-full overflow-hidden"
+      className="fixed top-0 left-0 right-0 z-[60] w-full overflow-hidden"
       style={{ background: "oklch(0.38 0.04 145)" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-center h-9 relative">
@@ -98,4 +118,9 @@ export default function AnnouncementBar() {
       </div>
     </div>
   );
+}
+
+// Keep default export for backward compat, but it's now managed by the Provider
+export default function AnnouncementBar() {
+  return null; // Rendered by AnnouncementBarProvider instead
 }

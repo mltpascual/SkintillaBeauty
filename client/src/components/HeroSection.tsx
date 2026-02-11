@@ -14,7 +14,7 @@ export default function HeroSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden pt-20 lg:pt-0"
+      className="relative min-h-screen flex items-center overflow-hidden pt-28 lg:pt-8"
       style={{ background: "oklch(0.96 0.015 80)" }}
     >
       {/* Subtle grain texture overlay */}
