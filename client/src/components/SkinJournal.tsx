@@ -1,7 +1,7 @@
 /*
  * Skintilla Beauty — Botanical Atelier Design
  * Skin Journal: Editorial blog section with skincare articles
- * Magazine-style grid layout, dark mode aware
+ * Magazine-style grid layout, dark mode aware — fully mobile responsive
  */
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
@@ -116,25 +116,25 @@ export default function SkinJournal() {
     <section
       id="journal"
       ref={sectionRef}
-      className="py-24 lg:py-36 transition-colors duration-500"
+      className="py-16 sm:py-20 lg:py-36 transition-colors duration-500"
       style={{ background: isDark ? "oklch(0.14 0.012 55)" : "oklch(0.98 0.008 80)" }}
       aria-label="Skin Journal"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         {/* Header */}
-        <div className="text-center mb-16 stagger-children">
-          <div className="fade-up flex items-center justify-center gap-6 mb-6">
-            <div className="gold-divider w-[80px]" />
+        <div className="text-center mb-10 sm:mb-16 stagger-children">
+          <div className="fade-up flex items-center justify-center gap-4 sm:gap-6 mb-4 sm:mb-6">
+            <div className="gold-divider w-[40px] sm:w-[80px]" />
             <span
-              className="text-[0.7rem] font-medium tracking-[0.25em] uppercase text-[oklch(0.72_0.10_80)]"
+              className="text-[0.65rem] sm:text-[0.7rem] font-medium tracking-[0.25em] uppercase text-[oklch(0.72_0.10_80)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               The Skin Journal
             </span>
-            <div className="gold-divider w-[80px]" />
+            <div className="gold-divider w-[40px] sm:w-[80px]" />
           </div>
           <h2
-            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${
+            className={`fade-up text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.15] font-semibold ${
               isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
             }`}
             style={{ fontFamily: "var(--font-display)" }}
@@ -149,7 +149,7 @@ export default function SkinJournal() {
             </em>
           </h2>
           <p
-            className={`fade-up mt-5 text-[1rem] leading-[1.7] max-w-xl mx-auto font-light ${
+            className={`fade-up mt-3 sm:mt-5 text-[0.88rem] sm:text-[1rem] leading-[1.7] max-w-xl mx-auto font-light ${
               isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.50_0.03_55)]"
             }`}
             style={{ fontFamily: "var(--font-body)" }}
@@ -161,7 +161,7 @@ export default function SkinJournal() {
 
         {/* Featured Article */}
         <div
-          className="fade-up mb-12 cursor-pointer group"
+          className="fade-up mb-8 sm:mb-12 cursor-pointer group"
           onClick={() => setSelectedArticle(featuredArticle)}
           role="button"
           tabIndex={0}
@@ -173,16 +173,16 @@ export default function SkinJournal() {
           }}
           aria-label={`Read article: ${featuredArticle.title}`}
         >
-          <div className="grid lg:grid-cols-2 gap-0 overflow-hidden rounded-2xl">
-            <div className="relative overflow-hidden aspect-[4/3] lg:aspect-auto">
+          <div className="grid lg:grid-cols-2 gap-0 overflow-hidden rounded-xl sm:rounded-2xl">
+            <div className="relative overflow-hidden aspect-[16/10] sm:aspect-[4/3] lg:aspect-auto">
               <img
                 src={featuredArticle.image}
                 alt={featuredArticle.title}
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute top-4 left-4">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
                 <span
-                  className="px-4 py-1.5 rounded-full text-[0.65rem] tracking-[0.12em] uppercase bg-[oklch(0.72_0.10_80)] text-[oklch(0.20_0.03_55)] font-medium"
+                  className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[0.6rem] sm:text-[0.65rem] tracking-[0.12em] uppercase bg-[oklch(0.72_0.10_80)] text-[oklch(0.20_0.03_55)] font-medium"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   Featured
@@ -190,18 +190,18 @@ export default function SkinJournal() {
               </div>
             </div>
             <div
-              className={`p-8 lg:p-12 flex flex-col justify-center transition-colors duration-500 ${
+              className={`p-5 sm:p-8 lg:p-12 flex flex-col justify-center transition-colors duration-500 ${
                 isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-white"
               }`}
             >
               <span
-                className="text-[0.68rem] tracking-[0.15em] uppercase text-[oklch(0.72_0.10_80)] mb-3"
+                className="text-[0.62rem] sm:text-[0.68rem] tracking-[0.15em] uppercase text-[oklch(0.72_0.10_80)] mb-2 sm:mb-3"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {featuredArticle.category}
               </span>
               <h3
-                className={`text-[clamp(1.3rem,2.5vw,1.8rem)] leading-[1.3] font-semibold mb-4 group-hover:text-[oklch(0.50_0.05_145)] transition-colors duration-300 ${
+                className={`text-[clamp(1.1rem,2.5vw,1.8rem)] leading-[1.3] font-semibold mb-3 sm:mb-4 group-hover:text-[oklch(0.50_0.05_145)] transition-colors duration-300 ${
                   isDark ? "text-[oklch(0.88_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
                 }`}
                 style={{ fontFamily: "var(--font-display)" }}
@@ -209,25 +209,25 @@ export default function SkinJournal() {
                 {featuredArticle.title}
               </h3>
               <p
-                className={`text-[0.92rem] leading-[1.7] mb-6 ${
+                className={`text-[0.82rem] sm:text-[0.92rem] leading-[1.7] mb-4 sm:mb-6 line-clamp-3 sm:line-clamp-none ${
                   isDark ? "text-[oklch(0.60_0.015_75)]" : "text-[oklch(0.50_0.03_55)]"
                 }`}
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {featuredArticle.excerpt}
               </p>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 sm:gap-4">
                 <span
-                  className={`flex items-center gap-1.5 text-[0.75rem] ${
+                  className={`flex items-center gap-1.5 text-[0.7rem] sm:text-[0.75rem] ${
                     isDark ? "text-[oklch(0.50_0.015_55)]" : "text-[oklch(0.60_0.03_55)]"
                   }`}
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  <Clock size={13} />
+                  <Clock size={12} />
                   {featuredArticle.readTime}
                 </span>
                 <span
-                  className={`text-[0.75rem] ${
+                  className={`text-[0.7rem] sm:text-[0.75rem] ${
                     isDark ? "text-[oklch(0.45_0.015_55)]" : "text-[oklch(0.65_0.03_55)]"
                   }`}
                   style={{ fontFamily: "var(--font-body)" }}
@@ -235,7 +235,7 @@ export default function SkinJournal() {
                   {featuredArticle.date}
                 </span>
               </div>
-              <div className="mt-6 flex items-center gap-2 text-[oklch(0.50_0.05_145)] text-[0.8rem] font-medium group-hover:gap-3 transition-all duration-300">
+              <div className="mt-4 sm:mt-6 flex items-center gap-2 text-[oklch(0.50_0.05_145)] text-[0.75rem] sm:text-[0.8rem] font-medium group-hover:gap-3 transition-all duration-300">
                 <span style={{ fontFamily: "var(--font-body)" }}>Read Article</span>
                 <ArrowRight size={14} />
               </div>
@@ -243,8 +243,8 @@ export default function SkinJournal() {
           </div>
         </div>
 
-        {/* Article Grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Article Grid — 1 col mobile, 2 col tablet, 4 col desktop */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {otherArticles.map((article, index) => (
             <div
               key={article.id}
@@ -265,58 +265,61 @@ export default function SkinJournal() {
               }}
               aria-label={`Read article: ${article.title}`}
             >
-              <div className="relative overflow-hidden aspect-[3/2]">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
-                <div className="absolute top-3 left-3">
-                  <span
-                    className={`px-3 py-1 rounded-full text-[0.6rem] tracking-[0.1em] uppercase font-medium ${
-                      isDark
-                        ? "bg-[oklch(0.20_0.015_55/0.85)] text-[oklch(0.72_0.10_80)]"
-                        : "bg-white/90 text-[oklch(0.50_0.05_145)]"
-                    }`}
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    {article.category}
-                  </span>
-                </div>
-              </div>
-              <div className="p-5">
-                <h4
-                  className={`text-[0.92rem] leading-[1.4] font-semibold mb-2 line-clamp-2 group-hover:text-[oklch(0.50_0.05_145)] transition-colors duration-300 ${
-                    isDark ? "text-[oklch(0.85_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
-                  }`}
-                  style={{ fontFamily: "var(--font-display)" }}
-                >
-                  {article.title}
-                </h4>
-                <p
-                  className={`text-[0.78rem] leading-[1.6] line-clamp-2 mb-4 ${
-                    isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.55_0.03_55)]"
-                  }`}
-                  style={{ fontFamily: "var(--font-body)" }}
-                >
-                  {article.excerpt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`flex items-center gap-1.5 text-[0.7rem] ${
-                      isDark ? "text-[oklch(0.45_0.015_55)]" : "text-[oklch(0.60_0.03_55)]"
-                    }`}
-                    style={{ fontFamily: "var(--font-body)" }}
-                  >
-                    <Clock size={12} />
-                    {article.readTime}
-                  </span>
-                  <ArrowRight
-                    size={14}
-                    className={`transition-all duration-300 group-hover:translate-x-1 ${
-                      isDark ? "text-[oklch(0.50_0.015_55)]" : "text-[oklch(0.65_0.03_55)]"
-                    } group-hover:text-[oklch(0.50_0.05_145)]`}
+              {/* Mobile: horizontal card layout / Desktop: vertical card */}
+              <div className="flex sm:flex-col">
+                <div className="relative overflow-hidden w-[120px] sm:w-full aspect-square sm:aspect-[3/2] shrink-0">
+                  <img
+                    src={article.image}
+                    alt={article.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3">
+                    <span
+                      className={`px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[0.55rem] sm:text-[0.6rem] tracking-[0.1em] uppercase font-medium ${
+                        isDark
+                          ? "bg-[oklch(0.20_0.015_55/0.85)] text-[oklch(0.72_0.10_80)]"
+                          : "bg-white/90 text-[oklch(0.50_0.05_145)]"
+                      }`}
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      {article.category}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-3 sm:p-5 flex flex-col justify-center flex-1 min-w-0">
+                  <h4
+                    className={`text-[0.82rem] sm:text-[0.92rem] leading-[1.35] sm:leading-[1.4] font-semibold mb-1.5 sm:mb-2 line-clamp-2 group-hover:text-[oklch(0.50_0.05_145)] transition-colors duration-300 ${
+                      isDark ? "text-[oklch(0.85_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
+                    }`}
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {article.title}
+                  </h4>
+                  <p
+                    className={`text-[0.72rem] sm:text-[0.78rem] leading-[1.5] sm:leading-[1.6] line-clamp-2 mb-2 sm:mb-4 ${
+                      isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.55_0.03_55)]"
+                    }`}
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    {article.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`flex items-center gap-1 sm:gap-1.5 text-[0.65rem] sm:text-[0.7rem] ${
+                        isDark ? "text-[oklch(0.45_0.015_55)]" : "text-[oklch(0.60_0.03_55)]"
+                      }`}
+                      style={{ fontFamily: "var(--font-body)" }}
+                    >
+                      <Clock size={11} />
+                      {article.readTime}
+                    </span>
+                    <ArrowRight
+                      size={13}
+                      className={`transition-all duration-300 group-hover:translate-x-1 ${
+                        isDark ? "text-[oklch(0.50_0.015_55)]" : "text-[oklch(0.65_0.03_55)]"
+                      } group-hover:text-[oklch(0.50_0.05_145)]`}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -324,10 +327,10 @@ export default function SkinJournal() {
         </div>
       </div>
 
-      {/* Article Modal */}
+      {/* Article Modal — fully responsive */}
       {selectedArticle && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[60] flex items-end sm:items-center justify-center sm:p-4"
           role="dialog"
           aria-modal="true"
           aria-label={selectedArticle.title}
@@ -337,12 +340,12 @@ export default function SkinJournal() {
             onClick={() => setSelectedArticle(null)}
           />
           <div
-            className={`relative w-full max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl shadow-2xl ${
+            className={`relative w-full sm:max-w-2xl max-h-[92vh] sm:max-h-[85vh] overflow-y-auto rounded-t-2xl sm:rounded-2xl shadow-2xl ${
               isDark ? "bg-[oklch(0.18_0.015_55)]" : "bg-white"
             }`}
           >
             {/* Modal Header Image */}
-            <div className="relative h-56 overflow-hidden rounded-t-2xl">
+            <div className="relative h-40 sm:h-56 overflow-hidden rounded-t-2xl">
               <img
                 src={selectedArticle.image}
                 alt={selectedArticle.title}
@@ -351,14 +354,14 @@ export default function SkinJournal() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <button
                 onClick={() => setSelectedArticle(null)}
-                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
+                className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/60 transition-colors"
                 aria-label="Close article"
               >
-                <X size={16} />
+                <X size={14} />
               </button>
-              <div className="absolute bottom-4 left-6">
+              <div className="absolute bottom-3 left-4 sm:bottom-4 sm:left-6">
                 <span
-                  className="px-3 py-1 rounded-full text-[0.65rem] tracking-[0.1em] uppercase bg-[oklch(0.72_0.10_80)] text-[oklch(0.20_0.03_55)] font-medium"
+                  className="px-2.5 sm:px-3 py-1 rounded-full text-[0.6rem] sm:text-[0.65rem] tracking-[0.1em] uppercase bg-[oklch(0.72_0.10_80)] text-[oklch(0.20_0.03_55)] font-medium"
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {selectedArticle.category}
@@ -367,19 +370,19 @@ export default function SkinJournal() {
             </div>
 
             {/* Modal Content */}
-            <div className="p-8">
-              <div className="flex items-center gap-4 mb-4">
+            <div className="p-5 sm:p-8">
+              <div className="flex items-center gap-3 sm:gap-4 mb-3 sm:mb-4">
                 <span
-                  className={`flex items-center gap-1.5 text-[0.75rem] ${
+                  className={`flex items-center gap-1.5 text-[0.7rem] sm:text-[0.75rem] ${
                     isDark ? "text-[oklch(0.50_0.015_55)]" : "text-[oklch(0.60_0.03_55)]"
                   }`}
                   style={{ fontFamily: "var(--font-body)" }}
                 >
-                  <Clock size={13} />
+                  <Clock size={12} />
                   {selectedArticle.readTime}
                 </span>
                 <span
-                  className={`text-[0.75rem] ${
+                  className={`text-[0.7rem] sm:text-[0.75rem] ${
                     isDark ? "text-[oklch(0.40_0.015_55)]" : "text-[oklch(0.65_0.03_55)]"
                   }`}
                   style={{ fontFamily: "var(--font-body)" }}
@@ -389,7 +392,7 @@ export default function SkinJournal() {
               </div>
 
               <h2
-                className={`text-[clamp(1.4rem,3vw,2rem)] leading-[1.25] font-semibold mb-6 ${
+                className={`text-[clamp(1.2rem,3vw,2rem)] leading-[1.25] font-semibold mb-4 sm:mb-6 ${
                   isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
                 }`}
                 style={{ fontFamily: "var(--font-display)" }}
@@ -397,20 +400,20 @@ export default function SkinJournal() {
                 {selectedArticle.title}
               </h2>
 
-              <div className="gold-divider w-[60px] mb-6" />
+              <div className="gold-divider w-[40px] sm:w-[60px] mb-4 sm:mb-6" />
 
-              <div className="space-y-5">
+              <div className="space-y-4 sm:space-y-5">
                 {selectedArticle.content.map((paragraph, i) => (
                   <p
                     key={i}
-                    className={`text-[0.92rem] leading-[1.8] ${
+                    className={`text-[0.85rem] sm:text-[0.92rem] leading-[1.75] sm:leading-[1.8] ${
                       isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.40_0.03_55)]"
                     }`}
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {i === 0 && (
                       <span
-                        className={`float-left text-[3rem] leading-[0.85] mr-3 mt-1 font-semibold ${
+                        className={`float-left text-[2.5rem] sm:text-[3rem] leading-[0.85] mr-2 sm:mr-3 mt-1 font-semibold ${
                           isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"
                         }`}
                         style={{ fontFamily: "var(--font-display)" }}
@@ -423,12 +426,12 @@ export default function SkinJournal() {
                 ))}
               </div>
 
-              <div className="gold-divider w-full mt-8 mb-6" />
+              <div className="gold-divider w-full mt-6 sm:mt-8 mb-4 sm:mb-6" />
 
               <div className="flex items-center gap-3">
-                <BookOpen size={16} className="text-[oklch(0.72_0.10_80)]" />
+                <BookOpen size={14} className="text-[oklch(0.72_0.10_80)]" />
                 <span
-                  className={`text-[0.8rem] italic ${
+                  className={`text-[0.72rem] sm:text-[0.8rem] italic ${
                     isDark ? "text-[oklch(0.50_0.015_55)]" : "text-[oklch(0.55_0.03_55)]"
                   }`}
                   style={{ fontFamily: "var(--font-display)" }}
