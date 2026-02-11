@@ -1,3 +1,4 @@
+
 /*
  * Skintilla Beauty — Botanical Atelier Design
  * Skincare Quiz: Interactive multi-step quiz that recommends products based on skin type
@@ -7,6 +8,7 @@ import { useState, useCallback } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ArrowLeft, Sparkles, RotateCcw } from "lucide-react";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 interface QuizQuestion {
   id: number;
@@ -97,6 +99,7 @@ const getRecommendation = (answers: string[]): ProductRecommendation => {
 };
 
 export default function SkincareQuiz() {
+  const { isDark } = useDarkMode();
   const sectionRef = useScrollReveal();
   const [started, setStarted] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
@@ -148,8 +151,8 @@ export default function SkincareQuiz() {
     <section
       id="quiz"
       ref={sectionRef}
-      className="py-24 lg:py-36"
-      style={{ background: "oklch(0.93 0.02 75)" }}
+      className="py-24 lg:py-36 transition-colors duration-500"
+      style={{ background: isDark ? "oklch(0.20 0.015 55)" : "oklch(0.93 0.02 75)" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -165,16 +168,16 @@ export default function SkincareQuiz() {
             <div className="gold-divider w-[80px]" />
           </div>
           <h2
-            className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Skincare{" "}
-            <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+            <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
               Quiz
             </em>
           </h2>
           <p
-            className="fade-up mt-5 text-[1rem] leading-[1.7] text-[oklch(0.50_0.03_55)] max-w-xl mx-auto font-light"
+            className={`fade-up mt-5 text-[1rem] leading-[1.7] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} max-w-xl mx-auto font-light`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Answer three simple questions and discover the perfect Skintilla
@@ -184,7 +187,7 @@ export default function SkincareQuiz() {
 
         {/* Quiz Card */}
         <div className="fade-up max-w-2xl mx-auto">
-          <div className="bg-[oklch(0.98_0.008_80)] border border-[oklch(0.88_0.02_75)] p-8 lg:p-12 relative overflow-hidden">
+          <div className={`${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.98_0.008_80)]"} border ${isDark ? "border-[oklch(0.28_0.015_55)]" : "border-[oklch(0.88_0.02_75)]"} p-8 lg:p-12 relative overflow-hidden`}>
             {/* Decorative corner accents */}
             <div className="absolute top-0 left-0 w-12 h-12 border-t border-l border-[oklch(0.72_0.10_80/0.3)]" />
             <div className="absolute bottom-0 right-0 w-12 h-12 border-b border-r border-[oklch(0.72_0.10_80/0.3)]" />
@@ -208,13 +211,13 @@ export default function SkincareQuiz() {
                     />
                   </div>
                   <h3
-                    className="text-[1.8rem] font-semibold text-[oklch(0.25_0.03_55)] mb-3"
+                    className={`text-[1.8rem] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"} mb-3`}
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     Discover Your Routine
                   </h3>
                   <p
-                    className="text-[0.92rem] text-[oklch(0.50_0.03_55)] mb-8 font-light max-w-sm mx-auto"
+                    className={`text-[0.92rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} mb-8 font-light max-w-sm mx-auto`}
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     Take our 30-second quiz to find the perfect Skintilla
@@ -244,7 +247,7 @@ export default function SkincareQuiz() {
                   <div className="mb-8">
                     <div className="flex items-center justify-between mb-2">
                       <span
-                        className="text-[0.65rem] tracking-[0.15em] uppercase text-[oklch(0.60_0.03_55)]"
+                        className={`text-[0.65rem] tracking-[0.15em] uppercase ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.60_0.03_55)]"}`}
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         Question {currentStep + 1} of {questions.length}
@@ -256,18 +259,17 @@ export default function SkincareQuiz() {
                         {Math.round(progress)}%
                       </span>
                     </div>
-                    <div className="h-[2px] bg-[oklch(0.90_0.02_75)] overflow-hidden">
+                    <div className={`h-[2px] ${isDark ? "bg-[oklch(0.28_0.015_55)]" : "bg-[oklch(0.90_0.02_75)]"} overflow-hidden`}>
                       <motion.div
                         className="h-full bg-[oklch(0.72_0.10_80)]"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${progress}%` }}
+                        style={{ width: `${progress}%` }}
                         transition={{ duration: 0.5 }}
                       />
                     </div>
                   </div>
 
                   <h3
-                    className="text-[1.5rem] lg:text-[1.8rem] font-semibold text-[oklch(0.25_0.03_55)] mb-8"
+                    className={`text-[1.5rem] lg:text-[1.8rem] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"} mb-8`}
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {questions[currentStep].question}
@@ -281,7 +283,7 @@ export default function SkincareQuiz() {
                         className={`w-full text-left p-4 border transition-all duration-300 group ${
                           selectedOption === option.value
                             ? "border-[oklch(0.72_0.10_80)] bg-[oklch(0.72_0.10_80/0.06)]"
-                            : "border-[oklch(0.88_0.02_75)] hover:border-[oklch(0.72_0.10_80/0.4)]"
+                            : `${isDark ? "border-[oklch(0.28_0.015_55)]" : "border-[oklch(0.88_0.02_75)]"} hover:border-[oklch(0.72_0.10_80/0.4)]`
                         }`}
                       >
                         <div className="flex items-center gap-4">
@@ -289,7 +291,7 @@ export default function SkincareQuiz() {
                             className={`w-5 h-5 rounded-full border-2 flex items-center justify-center shrink-0 transition-all duration-300 ${
                               selectedOption === option.value
                                 ? "border-[oklch(0.72_0.10_80)]"
-                                : "border-[oklch(0.80_0.02_75)]"
+                                : isDark ? "border-[oklch(0.4_0.015_55)]" : "border-[oklch(0.80_0.02_75)]"
                             }`}
                           >
                             {selectedOption === option.value && (
@@ -302,13 +304,13 @@ export default function SkincareQuiz() {
                           </div>
                           <div>
                             <span
-                              className="block text-[0.95rem] font-medium text-[oklch(0.25_0.03_55)]"
+                              className={`block text-[0.95rem] font-medium ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
                               style={{ fontFamily: "var(--font-body)" }}
                             >
                               {option.label}
                             </span>
                             <span
-                              className="block text-[0.8rem] text-[oklch(0.55_0.03_55)] font-light mt-0.5"
+                              className={`block text-[0.8rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.55_0.03_55)]"} font-light mt-0.5`}
                               style={{ fontFamily: "var(--font-body)" }}
                             >
                               {option.description}
@@ -326,7 +328,7 @@ export default function SkincareQuiz() {
                       className={`inline-flex items-center gap-2 text-[0.75rem] font-medium tracking-[0.12em] uppercase transition-all duration-300 ${
                         currentStep === 0
                           ? "text-[oklch(0.80_0.02_75)] cursor-not-allowed"
-                          : "text-[oklch(0.50_0.03_55)] hover:text-[oklch(0.38_0.04_145)]"
+                          : `${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} hover:text-[oklch(0.38_0.04_145)]`
                       }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
@@ -339,7 +341,7 @@ export default function SkincareQuiz() {
                       className={`inline-flex items-center gap-2 px-7 py-3 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase transition-all duration-300 ${
                         selectedOption
                           ? "bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)]"
-                          : "bg-[oklch(0.88_0.02_75)] text-[oklch(0.65_0.02_55)] cursor-not-allowed"
+                          : `${isDark ? "bg-[oklch(0.22_0.015_55)] text-[oklch(0.4_0.015_55)]" : "bg-[oklch(0.88_0.02_75)] text-[oklch(0.65_0.02_55)]"} cursor-not-allowed`
                       }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
@@ -360,7 +362,7 @@ export default function SkincareQuiz() {
                 >
                   {/* Progress bar — complete */}
                   <div className="mb-8">
-                    <div className="h-[2px] bg-[oklch(0.90_0.02_75)] overflow-hidden">
+                    <div className={`h-[2px] ${isDark ? "bg-[oklch(0.28_0.015_55)]" : "bg-[oklch(0.90_0.02_75)]"} overflow-hidden`}>
                       <div className="h-full w-full bg-[oklch(0.72_0.10_80)]" />
                     </div>
                   </div>
@@ -380,13 +382,13 @@ export default function SkincareQuiz() {
                       Your Perfect Match
                     </p>
                     <h3
-                      className="text-[2rem] lg:text-[2.4rem] font-semibold text-[oklch(0.25_0.03_55)] mb-2"
+                      className={`text-[2rem] lg:text-[2.4rem] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"} mb-2`}
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {recommendation.name}
                     </h3>
                     <p
-                      className="text-[0.95rem] text-[oklch(0.50_0.03_55)] font-light italic"
+                      className={`text-[0.95rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} font-light italic`}
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {recommendation.tagline}
@@ -398,7 +400,7 @@ export default function SkincareQuiz() {
                   {/* Recommended products */}
                   <div className="mb-8">
                     <p
-                      className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-[oklch(0.50_0.03_55)] mb-4"
+                      className={`text-[0.7rem] font-medium tracking-[0.2em] uppercase ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} mb-4`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Recommended Products
@@ -407,7 +409,7 @@ export default function SkincareQuiz() {
                       {recommendation.products.map((product) => (
                         <span
                           key={product}
-                          className="px-4 py-2 text-[0.8rem] border border-[oklch(0.72_0.10_80/0.3)] text-[oklch(0.38_0.04_145)] bg-[oklch(0.72_0.10_80/0.05)]"
+                          className={`px-4 py-2 text-[0.8rem] border border-[oklch(0.72_0.10_80/0.3)] ${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"} bg-[oklch(0.72_0.10_80/0.05)]`}
                           style={{ fontFamily: "var(--font-body)" }}
                         >
                           {product}
@@ -417,7 +419,7 @@ export default function SkincareQuiz() {
                   </div>
 
                   {/* Routine */}
-                  <div className="mb-8 p-5 bg-[oklch(0.96_0.015_80)] border border-[oklch(0.88_0.02_75)]">
+                  <div className={`mb-8 p-5 ${isDark ? "bg-[oklch(0.16_0.015_55)]" : "bg-[oklch(0.96_0.015_80)]"} border ${isDark ? "border-[oklch(0.28_0.015_55)]" : "border-[oklch(0.88_0.02_75)]"}`}>
                     <p
                       className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-[oklch(0.72_0.10_80)] mb-3"
                       style={{ fontFamily: "var(--font-body)" }}
@@ -425,7 +427,7 @@ export default function SkincareQuiz() {
                       Your Routine
                     </p>
                     <p
-                      className="text-[0.9rem] text-[oklch(0.40_0.03_55)] leading-[1.7] font-light"
+                      className={`text-[0.9rem] ${isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.40_0.03_55)]"} leading-[1.7] font-light`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       {recommendation.routine}
@@ -443,7 +445,7 @@ export default function SkincareQuiz() {
                     </a>
                     <button
                       onClick={handleReset}
-                      className="inline-flex items-center gap-2 px-6 py-3.5 text-[0.75rem] font-medium tracking-[0.12em] uppercase text-[oklch(0.50_0.03_55)] hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300"
+                      className={`inline-flex items-center gap-2 px-6 py-3.5 text-[0.75rem] font-medium tracking-[0.12em] uppercase ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       <RotateCcw size={14} />

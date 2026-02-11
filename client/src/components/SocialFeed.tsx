@@ -7,6 +7,7 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Heart, MessageCircle, Instagram } from "lucide-react";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 const socialPosts = [
   {
@@ -63,13 +64,14 @@ function formatNumber(n: number): string {
 export default function SocialFeed() {
   const sectionRef = useScrollReveal();
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
+  const { isDark } = useDarkMode();
 
   return (
     <section
       id="community"
       ref={sectionRef}
-      className="py-24 lg:py-32"
-      style={{ background: "oklch(0.97 0.008 80)" }}
+      className="py-24 lg:py-32 transition-colors duration-500"
+      style={{ background: isDark ? "oklch(0.17 0.015 55)" : "oklch(0.97 0.008 80)" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -85,16 +87,16 @@ export default function SocialFeed() {
             <div className="gold-divider w-[60px]" />
           </div>
           <h2
-            className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Our{" "}
-            <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+            <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
               Community
             </em>
           </h2>
           <p
-            className="fade-up mt-4 text-[0.95rem] text-[oklch(0.50_0.03_55)] max-w-lg mx-auto font-light leading-relaxed"
+            className={`fade-up mt-4 text-[0.95rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} max-w-lg mx-auto font-light leading-relaxed`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Real people, real rituals. See how our community incorporates
@@ -168,7 +170,7 @@ export default function SocialFeed() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full border border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)] transition-all duration-400 group"
+            className={`inline-flex items-center gap-3 px-8 py-3.5 rounded-full border ${isDark ? "border-[oklch(0.50_0.05_145)] text-[oklch(0.50_0.05_145)] hover:bg-[oklch(0.50_0.05_145)]" : "border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)]"} hover:text-white transition-all duration-400 group`}
           >
             <Instagram className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
             <span

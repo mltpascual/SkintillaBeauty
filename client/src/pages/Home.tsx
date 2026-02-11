@@ -14,11 +14,13 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
 import RecentlyViewed from "@/components/RecentlyViewed";
+import LoadingScreen from "@/components/LoadingScreen";
 
 export default function Home() {
   return (
     <AnnouncementBarProvider>
-      <div className="min-h-screen">
+      <LoadingScreen />
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-500">
         <Navbar />
         <HeroSection />
         <StorySection />

@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { toast } from "sonner";
 import { Gift, Sparkles, Package, Timer } from "lucide-react";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 const BUNDLE_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-5_1770802544000_na1fn_YnVuZGxlLWdpZnQ.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTVfMTc3MDgwMjU0NDAwMF9uYTFmbl9ZblZ1Wkd4bExXZHBablEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=dgoN9y89clWHP0Vl4nY7cZf4JcjIDlC7UwubB5PO5PbN2AF8OMPwG0pHR0TU~S9r5BFtyiOA70mHKzOP7M0TPAOtTn1ImFuTuubnf-HLYZG9OboB8NlFIi7DjwZ-OgIpIPMQXQ5ITT7HFEeU0hEhXEQw1GAjLpIbQ1ts9Ie0YbQrNebgiTMzkFlraog3olVjSrjEq10gKfK8XZITFU2mRi4nyFl1b-3IXtk9z0LpHgZvZOGM1-jJ41mpOo2efoCp-71STOurKALAza~90BwbTNp2P4yp6iOY1cSsH~Ot9xpiYlSCauDObxJXfjL0V90xuRDTXWEUYU3trRMiWfJ8ng__";
@@ -74,16 +75,17 @@ function useCountdown(target: Date) {
 }
 
 function CountdownUnit({ value, label }: { value: number; label: string }) {
+  const { isDark } = useDarkMode();
   return (
     <div className="flex flex-col items-center">
       <span
-        className="text-[clamp(1.4rem,3vw,2rem)] font-semibold text-[oklch(0.38_0.04_145)] leading-none tabular-nums"
+        className={`text-[clamp(1.4rem,3vw,2rem)] font-semibold ${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"} leading-none tabular-nums`}
         style={{ fontFamily: "var(--font-display)" }}
       >
         {String(value).padStart(2, "0")}
       </span>
       <span
-        className="text-[0.55rem] font-medium tracking-[0.2em] uppercase text-[oklch(0.55_0.03_55)] mt-1"
+        className={`text-[0.55rem] font-medium tracking-[0.2em] uppercase ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.55_0.03_55)]"} mt-1`}
         style={{ fontFamily: "var(--font-body)" }}
       >
         {label}
@@ -94,6 +96,7 @@ function CountdownUnit({ value, label }: { value: number; label: string }) {
 
 export default function BundlesSection() {
   const sectionRef = useScrollReveal();
+  const { isDark } = useDarkMode();
   const [promoEnd] = useState(getPromoEndDate);
   const { days, hours, minutes, seconds } = useCountdown(promoEnd);
 
@@ -101,8 +104,8 @@ export default function BundlesSection() {
     <section
       id="bundles"
       ref={sectionRef}
-      className="py-24 lg:py-36"
-      style={{ background: "oklch(0.98 0.008 80)" }}
+      className="py-24 lg:py-36 transition-colors duration-500"
+      style={{ background: isDark ? "oklch(0.18 0.015 55)" : "oklch(0.98 0.008 80)" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -118,16 +121,16 @@ export default function BundlesSection() {
             <div className="gold-divider w-[80px]" />
           </div>
           <h2
-            className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Beauty{" "}
-            <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+            <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
               Bundles
             </em>
           </h2>
           <p
-            className="fade-up mt-5 text-[1rem] leading-[1.7] text-[oklch(0.50_0.03_55)] max-w-xl mx-auto font-light"
+            className={`fade-up mt-5 text-[1rem] leading-[1.7] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} max-w-xl mx-auto font-light`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Complete skincare rituals, thoughtfully bundled for every routine.
@@ -139,7 +142,7 @@ export default function BundlesSection() {
         <div className="fade-up mb-14 lg:mb-18">
           <div
             className="relative overflow-hidden border border-[oklch(0.72_0.10_80/0.4)] px-6 py-6 lg:py-7"
-            style={{ background: "oklch(0.95 0.02 80)" }}
+            style={{ background: isDark ? "oklch(0.22 0.015 55)" : "oklch(0.95 0.02 80)" }}
           >
             {/* Subtle corner accents */}
             <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[oklch(0.72_0.10_80/0.5)]" />
@@ -160,7 +163,7 @@ export default function BundlesSection() {
                     Spring Glow Sale
                   </p>
                   <p
-                    className="text-[0.8rem] text-[oklch(0.40_0.03_55)] font-light"
+                    className={`text-[0.8rem] ${isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.40_0.03_55)]"} font-light`}
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     Extra 15% off all bundles — limited time
@@ -222,8 +225,8 @@ export default function BundlesSection() {
                   key={bundle.name}
                   className={`fade-up relative p-6 border rounded-xl transition-all duration-400 ease-out cursor-pointer group hover:-translate-y-1 hover:shadow-[0_14px_35px_oklch(0.25_0.03_55/0.09),0_5px_10px_oklch(0.25_0.03_55/0.05)] ${
                     bundle.popular
-                      ? "border-[oklch(0.72_0.10_80)] bg-[oklch(0.96_0.015_80)]"
-                      : "border-[oklch(0.88_0.02_75)] bg-[oklch(0.98_0.008_80)] hover:border-[oklch(0.72_0.10_80/0.5)]"
+                      ? `border-[oklch(0.72_0.10_80)] ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.96_0.015_80)]"}`
+                      : `${isDark ? "border-[oklch(0.28_0.015_55)]" : "border-[oklch(0.88_0.02_75)]"} ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.98_0.008_80)]"} hover:border-[oklch(0.72_0.10_80/0.5)]`
                   }`}
                   onClick={() => toast("Shop coming soon! Stay tuned.")}
                 >
@@ -248,14 +251,14 @@ export default function BundlesSection() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
                         <h3
-                          className="text-[1.3rem] font-semibold text-[oklch(0.25_0.03_55)]"
+                          className={`text-[1.3rem] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
                           style={{ fontFamily: "var(--font-display)" }}
                         >
                           {bundle.name}
                         </h3>
                         <div className="text-right">
                           <span
-                            className="block text-[1.2rem] font-semibold text-[oklch(0.38_0.04_145)]"
+                            className={`block text-[1.2rem] font-semibold ${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"}`}
                             style={{ fontFamily: "var(--font-display)" }}
                           >
                             {bundle.price}
@@ -273,7 +276,7 @@ export default function BundlesSection() {
                         {bundle.items.map((item) => (
                           <li
                             key={item}
-                            className="text-[0.82rem] text-[oklch(0.50_0.03_55)] font-light before:content-['·'] before:mr-1.5 before:text-[oklch(0.72_0.10_80)]"
+                            className={`text-[0.82rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} font-light before:content-['·'] before:mr-1.5 before:text-[oklch(0.72_0.10_80)]`}
                             style={{ fontFamily: "var(--font-body)" }}
                           >
                             {item}
@@ -283,7 +286,7 @@ export default function BundlesSection() {
 
                       <div className="mt-4">
                         <span
-                          className="inline-flex items-center text-[0.72rem] font-medium tracking-[0.12em] uppercase text-[oklch(0.38_0.04_145)] group-hover:text-[oklch(0.72_0.10_80)] transition-colors duration-300"
+                          className={`inline-flex items-center text-[0.72rem] font-medium tracking-[0.12em] uppercase ${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"} group-hover:text-[oklch(0.72_0.10_80)] transition-colors duration-300`}
                           style={{ fontFamily: "var(--font-body)" }}
                         >
                           Add to Cart

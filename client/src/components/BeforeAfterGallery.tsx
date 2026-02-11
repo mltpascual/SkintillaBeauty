@@ -1,3 +1,4 @@
+
 /*
  * Skintilla Beauty — Botanical Atelier Design
  * Before & After Gallery: Interactive comparison slider + testimonial cards
@@ -7,6 +8,7 @@ import { useState, useRef, useCallback } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 interface TransformationStory {
   image: string;
@@ -55,6 +57,7 @@ const transformations: TransformationStory[] = [
 ];
 
 function ImageSlider({ src }: { src: string }) {
+  const { isDark } = useDarkMode();
   const containerRef = useRef<HTMLDivElement>(null);
   const [sliderPos, setSliderPos] = useState(50);
   const isDragging = useRef(false);
@@ -123,13 +126,34 @@ function ImageSlider({ src }: { src: string }) {
 
       {/* Slider line */}
       <div
-        className="absolute top-0 bottom-0 w-[2px] bg-[oklch(0.98_0.008_80)] z-10"
-        style={{ left: `${sliderPos}%`, transform: "translateX(-50%)" }}
+        className="absolute top-0 bottom-0 w-[2px] bg-[oklch(0.98_0.008_80)] z-10 transition-colors duration-500"
+        style={{
+          left: `${sliderPos}%`,
+          transform: "translateX(-50%)",
+          backgroundColor: isDark ? "oklch(0.28 0.015 55)" : "oklch(0.98 0.008 80)",
+        }}
       >
         {/* Handle */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-[oklch(0.98_0.008_80)] border border-[oklch(0.72_0.10_80)] flex items-center justify-center shadow-lg">
-          <ChevronLeft size={12} className="text-[oklch(0.50_0.03_55)] -mr-0.5" />
-          <ChevronRight size={12} className="text-[oklch(0.50_0.03_55)] -ml-0.5" />
+        <div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 border border-[oklch(0.72_0.10_80)] flex items-center justify-center shadow-lg transition-colors duration-500"
+          style={{
+            backgroundColor: isDark
+              ? "oklch(0.18 0.015 55)"
+              : "oklch(0.98 0.008 80)",
+          }}
+        >
+          <ChevronLeft
+            size={12}
+            className={`-mr-0.5 transition-colors duration-500 ${
+              isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.50_0.03_55)]"
+            }`}
+          />
+          <ChevronRight
+            size={12}
+            className={`-ml-0.5 transition-colors duration-500 ${
+              isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.50_0.03_55)]"
+            }`}
+          />
         </div>
       </div>
 
@@ -152,6 +176,7 @@ function ImageSlider({ src }: { src: string }) {
 
 export default function BeforeAfterGallery() {
   const sectionRef = useScrollReveal();
+  const { isDark } = useDarkMode();
   const [activeIndex, setActiveIndex] = useState(0);
   const active = transformations[activeIndex];
 
@@ -159,8 +184,12 @@ export default function BeforeAfterGallery() {
     <section
       id="results"
       ref={sectionRef}
-      className="py-24 lg:py-36"
-      style={{ background: "oklch(0.98 0.008 80)" }}
+      className="py-24 lg:py-36 transition-colors duration-500"
+      style={{
+        background: isDark
+          ? "oklch(0.18 0.015 55)"
+          : "oklch(0.98 0.008 80)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -176,16 +205,26 @@ export default function BeforeAfterGallery() {
             <div className="gold-divider w-[80px]" />
           </div>
           <h2
-            className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold transition-colors duration-500 ${
+              isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
+            }`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Before &{" "}
-            <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+            <em
+              className={`font-normal italic transition-colors duration-500 ${
+                isDark
+                  ? "text-[oklch(0.60_0.06_145)]"
+                  : "text-[oklch(0.50_0.05_145)]"
+              }`}
+            >
               After
             </em>
           </h2>
           <p
-            className="fade-up mt-5 text-[1rem] leading-[1.7] text-[oklch(0.50_0.03_55)] max-w-xl mx-auto font-light"
+            className={`fade-up mt-5 text-[1rem] leading-[1.7] max-w-xl mx-auto font-light transition-colors duration-500 ${
+              isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.50_0.03_55)]"
+            }`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Real transformations from our community. Drag the slider to reveal
@@ -216,7 +255,7 @@ export default function BeforeAfterGallery() {
                     className={`transition-all duration-300 ${
                       i === activeIndex
                         ? "w-8 h-[3px] bg-[oklch(0.72_0.10_80)]"
-                        : "w-3 h-[3px] bg-[oklch(0.82_0.04_75)] hover:bg-[oklch(0.72_0.10_80/0.5)]"
+                        : `w-3 h-[3px] ${isDark ? "bg-[oklch(0.35_0.015_55)] hover:bg-[oklch(0.72_0.10_80/0.5)]" : "bg-[oklch(0.82_0.04_75)] hover:bg-[oklch(0.72_0.10_80/0.5)]"}`
                     }`}
                     aria-label={`View transformation ${i + 1}`}
                   />
@@ -231,21 +270,36 @@ export default function BeforeAfterGallery() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.1 }}
-                className="p-6 bg-[oklch(0.96_0.015_80)] border border-[oklch(0.88_0.02_75)]"
+                className={`p-6 transition-colors duration-500 ${
+                  isDark
+                    ? "bg-[oklch(0.20_0.015_55)] border-[oklch(0.28_0.015_55)]"
+                    : "bg-[oklch(0.96_0.015_80)] border-[oklch(0.88_0.02_75)]"
+                }`}
               >
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-[oklch(0.38_0.04_145)] flex items-center justify-center text-[oklch(0.98_0.008_80)] text-[0.85rem] font-semibold" style={{ fontFamily: "var(--font-display)" }}>
+                  <div
+                    className="w-10 h-10 bg-[oklch(0.38_0.04_145)] flex items-center justify-center text-[oklch(0.98_0.008_80)] text-[0.85rem] font-semibold"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
                     {active.name.charAt(0)}
                   </div>
                   <div>
                     <p
-                      className="text-[0.9rem] font-medium text-[oklch(0.25_0.03_55)]"
+                      className={`text-[0.9rem] font-medium transition-colors duration-500 ${
+                        isDark
+                          ? "text-[oklch(0.90_0.015_75)]"
+                          : "text-[oklch(0.25_0.03_55)]"
+                      }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       {active.name}
                     </p>
                     <p
-                      className="text-[0.72rem] text-[oklch(0.55_0.03_55)]"
+                      className={`text-[0.75rem] font-light transition-colors duration-500 ${
+                        isDark
+                          ? "text-[oklch(0.55_0.015_55)]"
+                          : "text-[oklch(0.50_0.02_55)]"
+                      }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Age {active.age}
@@ -262,7 +316,11 @@ export default function BeforeAfterGallery() {
                       Concern
                     </span>
                     <span
-                      className="text-[0.82rem] text-[oklch(0.40_0.03_55)] font-light"
+                      className={`text-[0.82rem] font-light transition-colors duration-500 ${
+                        isDark
+                          ? "text-[oklch(0.65_0.015_75)]"
+                          : "text-[oklch(0.40_0.03_55)]"
+                      }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       {active.concern}
@@ -276,7 +334,11 @@ export default function BeforeAfterGallery() {
                       Used
                     </span>
                     <span
-                      className="text-[0.82rem] text-[oklch(0.40_0.03_55)] font-light"
+                      className={`text-[0.82rem] font-light transition-colors duration-500 ${
+                        isDark
+                          ? "text-[oklch(0.65_0.015_75)]"
+                          : "text-[oklch(0.40_0.03_55)]"
+                      }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       {active.product}
@@ -290,7 +352,11 @@ export default function BeforeAfterGallery() {
                       Period
                     </span>
                     <span
-                      className="text-[0.82rem] text-[oklch(0.40_0.03_55)] font-light"
+                      className={`text-[0.82rem] font-light transition-colors duration-500 ${
+                        isDark
+                          ? "text-[oklch(0.65_0.015_75)]"
+                          : "text-[oklch(0.40_0.03_55)]"
+                      }`}
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       {active.duration}
@@ -301,7 +367,11 @@ export default function BeforeAfterGallery() {
                 <div className="gold-divider mb-5" />
 
                 <p
-                  className="text-[0.95rem] text-[oklch(0.35_0.03_55)] leading-[1.7] italic"
+                  className={`text-[0.95rem] leading-[1.7] italic transition-colors duration-500 ${
+                    isDark
+                      ? "text-[oklch(0.85_0.015_75)]"
+                      : "text-[oklch(0.35_0.03_55)]"
+                  }`}
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   &ldquo;{active.quote}&rdquo;

@@ -12,6 +12,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 const faqCategories = [
   {
@@ -83,13 +84,14 @@ const faqCategories = [
 
 export default function FAQSection() {
   const sectionRef = useScrollReveal();
+  const { isDark } = useDarkMode();
 
   return (
     <section
       id="faq"
       ref={sectionRef}
-      className="py-24 lg:py-32"
-      style={{ background: "oklch(0.96 0.015 80)" }}
+      className="py-24 lg:py-32 transition-colors duration-500"
+      style={{ background: isDark ? "oklch(0.16 0.015 55)" : "oklch(0.96 0.015 80)" }}
     >
       <div className="max-w-5xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -105,16 +107,16 @@ export default function FAQSection() {
             <div className="gold-divider w-[60px]" />
           </div>
           <h2
-            className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Frequently{" "}
-            <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+            <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
               Asked
             </em>
           </h2>
           <p
-            className="fade-up mt-4 text-[0.95rem] text-[oklch(0.50_0.03_55)] max-w-lg mx-auto font-light leading-relaxed"
+            className={`fade-up mt-4 text-[0.95rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} max-w-lg mx-auto font-light leading-relaxed`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Everything you need to know about Skintilla Beauty, from ingredients
@@ -130,17 +132,17 @@ export default function FAQSection() {
               <div className="flex items-center gap-4 mb-6">
                 <div
                   className="h-px flex-1"
-                  style={{ background: "oklch(0.85 0.03 80)" }}
+                  style={{ background: isDark ? "oklch(0.24 0.015 55)" : "oklch(0.85 0.03 80)" }}
                 />
                 <h3
-                  className="text-[0.7rem] font-medium tracking-[0.2em] uppercase text-[oklch(0.50_0.05_145)] shrink-0"
+                  className={`text-[0.7rem] font-medium tracking-[0.2em] uppercase ${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"} shrink-0`}
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {category.title}
                 </h3>
                 <div
                   className="h-px flex-1"
-                  style={{ background: "oklch(0.85 0.03 80)" }}
+                  style={{ background: isDark ? "oklch(0.24 0.015 55)" : "oklch(0.85 0.03 80)" }}
                 />
               </div>
 
@@ -150,13 +152,13 @@ export default function FAQSection() {
                   <AccordionItem
                     key={i}
                     value={`${category.title}-${i}`}
-                    className="border border-[oklch(0.90_0.02_80)] bg-[oklch(0.98_0.005_80)] px-6 data-[state=open]:bg-[oklch(0.97_0.01_80)] transition-colors duration-300"
+                    className={`border ${isDark ? "border-[oklch(0.28_0.015_55)]" : "border-[oklch(0.90_0.02_80)]"} ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.98_0.005_80)]"} px-6 data-[state=open]:${isDark ? "bg-[oklch(0.22_0.015_55)]" : "bg-[oklch(0.97_0.01_80)]"} transition-colors duration-300`}
                   >
                     <AccordionTrigger
                       className="py-5 text-left hover:no-underline group"
                     >
                       <span
-                        className="text-[0.9rem] font-medium text-[oklch(0.30_0.03_55)] group-hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300 pr-4"
+                        className={`text-[0.9rem] font-medium ${isDark ? "text-[oklch(0.85_0.015_75)]" : "text-[oklch(0.30_0.03_55)]"} group-hover:${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"} transition-colors duration-300 pr-4`}
                         style={{ fontFamily: "var(--font-display)" }}
                       >
                         {item.question}
@@ -164,7 +166,7 @@ export default function FAQSection() {
                     </AccordionTrigger>
                     <AccordionContent className="pb-5">
                       <p
-                        className="text-[0.85rem] text-[oklch(0.45_0.03_55)] font-light leading-[1.8]"
+                        className={`text-[0.85rem] ${isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.45_0.03_55)]"} font-light leading-[1.8]`}
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         {item.answer}
@@ -180,14 +182,14 @@ export default function FAQSection() {
         {/* Contact CTA */}
         <div className="text-center mt-14 fade-up">
           <p
-            className="text-[0.85rem] text-[oklch(0.50_0.03_55)] font-light mb-4"
+            className={`text-[0.85rem] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} font-light mb-4`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Still have questions? We'd love to hear from you.
           </p>
           <a
             href="mailto:hello@skintillabeauty.com"
-            className="inline-flex items-center px-8 py-3.5 rounded-full border border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)] transition-all duration-400 text-[0.7rem] font-medium tracking-[0.2em] uppercase"
+            className={`inline-flex items-center px-8 py-3.5 rounded-full border ${isDark ? "border-[oklch(0.50_0.05_145)] text-[oklch(0.50_0.05_145)] hover:bg-[oklch(0.50_0.05_145)] hover:text-[oklch(0.17_0.015_55)]" : "border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)]"} transition-all duration-400 text-[0.7rem] font-medium tracking-[0.2em] uppercase`}
             style={{ fontFamily: "var(--font-body)" }}
           >
             Contact Us

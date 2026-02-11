@@ -11,6 +11,7 @@ import ProductDetailModal, {
 } from "@/components/ProductDetailModal";
 import ProductVideoHover from "@/components/ProductVideoHover";
 import { addRecentlyViewed } from "@/components/RecentlyViewed";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 const PRODUCT_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-2_1770802535000_na1fn_cHJvZHVjdC1jb2xsZWN0aW9u.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTJfMTc3MDgwMjUzNTAwMF9uYTFmbl9jSEp2WkhWamRDMWpiMnhzWldOMGFXOXUuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=cKPfrKtJGK0XG9WglSaJ-uYoUWSR2zYq6D6a76L0hNbf9yJXto9Ct1xpoc7Lj35E7FWLmUnrozRRFlbM-drdq1PfXKfZccnK99Xwoo89pDg~gBRHfqhy5nIkWMUmyf1ooNSObB5XST2TvJQmFuWzN1iRyybyf7gSnQOPUNifwBZwuvGy8dT91ndTCpub1UEUGVXfqe4Sc1LLRnjgFpWfFCCLUyKCdfq7ZCyqRsBUwAb-2ToPDXHaGaHdaQ32oZ4Zo3sqriKXUarrfn1zfbFB8j3-EraYRbffSkWQO8jEdbBGgQCq8a17CPakp2d6K64Mc2dX4L4cuAE-ysfKLgiO~Q__";
@@ -231,6 +232,7 @@ const products: (ProductData & { videoSrc: string })[] = [
 ];
 
 export default function ProductsSection() {
+  const { isDark } = useDarkMode();
   const sectionRef = useScrollReveal();
   const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(
     null
@@ -254,8 +256,12 @@ export default function ProductsSection() {
       <section
         id="products"
         ref={sectionRef}
-        className="py-24 lg:py-36"
-        style={{ background: "oklch(0.96 0.015 80)" }}
+        className="py-24 lg:py-36 transition-colors duration-500"
+        style={{
+          background: isDark
+            ? "oklch(0.16 0.015 55)"
+            : "oklch(0.96 0.015 80)",
+        }}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           {/* Section header */}
@@ -271,17 +277,17 @@ export default function ProductsSection() {
                 </span>
               </div>
               <h2
-                className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+                className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Signature{" "}
-                <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+                <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
                   Products
                 </em>
               </h2>
             </div>
             <p
-              className="fade-up mt-4 lg:mt-0 text-[0.95rem] leading-[1.7] text-[oklch(0.50_0.03_55)] max-w-md font-light"
+              className={`fade-up mt-4 lg:mt-0 text-[0.95rem] leading-[1.7] ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"} max-w-md font-light`}
               style={{ fontFamily: "var(--font-body)" }}
             >
               Each formulation is a carefully balanced blend of botanical
@@ -290,7 +296,7 @@ export default function ProductsSection() {
           </div>
 
           {/* Featured product image + grid */}
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-6">
+          <div className="grid lg:grid-cols-12 gap-10 items-start">
             {/* Large featured image */}
             <div className="lg:col-span-5 fade-up">
               <div className="relative group overflow-hidden rounded-xl transition-shadow duration-500 hover:shadow-[0_20px_50px_oklch(0.25_0.03_55/0.12),0_8px_16px_oklch(0.25_0.03_55/0.06)]">
@@ -321,7 +327,7 @@ export default function ProductsSection() {
                   onClick={() => openProduct(product)}
                 >
                   {/* Video hover container */}
-                  <div className="relative overflow-hidden mb-4 bg-[oklch(0.93_0.02_75)] rounded-lg">
+                  <div className={`relative overflow-hidden mb-4 ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.93_0.02_75)]"} rounded-lg`}>
                     <ProductVideoHover
                       image={product.image}
                       videoSrc={product.videoSrc}
@@ -348,21 +354,21 @@ export default function ProductsSection() {
                         {product.category}
                       </p>
                       <h3
-                        className="text-[1.3rem] font-semibold text-[oklch(0.25_0.03_55)] group-hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300 relative inline-block"
+                        className={`text-[1.3rem] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"} group-hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300 relative inline-block`}
                         style={{ fontFamily: "var(--font-display)" }}
                       >
                         {product.name}
                         <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[oklch(0.72_0.10_80)] group-hover:w-full transition-all duration-500 ease-out" />
                       </h3>
                       <p
-                        className="text-[0.85rem] text-[oklch(0.50_0.03_55)] mt-1 font-light leading-[1.6]"
+                        className={`text-[0.85rem] ${isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.50_0.03_55)]"} mt-1 font-light leading-[1.6]`}
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         {product.description}
                       </p>
                     </div>
                     <span
-                      className="text-[1.1rem] font-medium text-[oklch(0.38_0.04_145)] shrink-0 ml-4 transition-all duration-300 group-hover:scale-110 group-hover:text-[oklch(0.50_0.05_145)]"
+                      className={`text-[1.1rem] font-medium ${isDark ? "text-[oklch(0.50_0.05_145)]" : "text-[oklch(0.38_0.04_145)]"} shrink-0 ml-4 transition-all duration-300 group-hover:scale-110 group-hover:text-[oklch(0.50_0.05_145)]`}
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {product.price}

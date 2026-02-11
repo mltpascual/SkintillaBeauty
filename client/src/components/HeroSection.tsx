@@ -1,21 +1,24 @@
 /*
  * Skintilla Beauty — Botanical Atelier Design
  * Hero: Asymmetric split layout — oversized serif typography left, product imagery right
- * Warm cream background, gold accent line, botanical motifs
+ * Dark mode aware — adapts background, text, and overlay colors
  */
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useTheme } from "@/contexts/ThemeContext";
 
 const HERO_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-1_1770802538000_na1fn_aGVyby1iYW5uZXI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTFfMTc3MDgwMjUzODAwMF9uYTFmbl9hR1Z5YnkxaVlXNXVaWEkuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=hkfKo271XUg7hZ9DxlY2p4M-VYNP0KhJ6G12xUrdh24a8IlWTpAmnV0qe1IwNRwmWhtx950ZBY1sh9C67biTa8iDnpbV9wpp0f~4U2stuOBoqjtseRULppGYFFlj33HIPYS7mY8btKoZXRFzdL-PoFPDHZ0chIIyTJnEl9s-CpTIfnE3fbYz4jEmxBabwG9SvgSrJnJ8FYXMbOzEzlDj6v0obbVWKKATj6lL3eK~-8ov~iSyGD62cdGfnmtP6Dho7MMHQCXVzgZvhOF3sWm81nYQvkY4cLy1-nTkgO~p9uwaYdtDhl1JONAE8ql9WySISjFN20ODVMikctNLNOGvUA__";
 
 export default function HeroSection() {
   const sectionRef = useScrollReveal(0.1);
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden pt-28 lg:pt-8"
-      style={{ background: "oklch(0.96 0.015 80)" }}
+      className="relative min-h-screen flex items-center overflow-hidden pt-28 lg:pt-8 transition-colors duration-500"
+      style={{ background: isDark ? "oklch(0.16 0.015 55)" : "oklch(0.96 0.015 80)" }}
     >
       {/* Subtle grain texture overlay */}
       <div
@@ -29,7 +32,6 @@ export default function HeroSection() {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-4 items-center min-h-[calc(100vh-5rem)]">
           {/* Left: Typography */}
           <div className="lg:col-span-5 lg:pr-8 order-2 lg:order-1 stagger-children">
-            {/* Gold accent line */}
             <div className="fade-up w-16 h-[1px] bg-[oklch(0.72_0.10_80)] mb-8" />
 
             <p
@@ -40,19 +42,23 @@ export default function HeroSection() {
             </p>
 
             <h1
-              className="fade-up text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] font-semibold text-[oklch(0.25_0.03_55)] mb-6"
+              className={`fade-up text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] font-semibold mb-6 transition-colors duration-500 ${
+                isDark ? "text-[oklch(0.92_0.01_75)]" : "text-[oklch(0.25_0.03_55)]"
+              }`}
               style={{ fontFamily: "var(--font-display)" }}
             >
               Pamper Your
               <br />
-              <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+              <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
                 Natural
               </em>{" "}
               Beauty
             </h1>
 
             <p
-              className="fade-up text-[1.05rem] leading-[1.8] text-[oklch(0.40_0.03_55)] max-w-md mb-10 font-light"
+              className={`fade-up text-[1.05rem] leading-[1.8] max-w-md mb-10 font-light transition-colors duration-500 ${
+                isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.40_0.03_55)]"
+              }`}
               style={{ fontFamily: "var(--font-body)" }}
             >
               Curated skincare rituals that combine the finest natural
@@ -70,7 +76,9 @@ export default function HeroSection() {
               </a>
               <a
                 href="#story"
-                className="inline-flex items-center px-8 py-3.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80/0.1)] transition-all duration-300"
+                className={`inline-flex items-center px-8 py-3.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] hover:bg-[oklch(0.72_0.10_80/0.1)] transition-all duration-300 ${
+                  isDark ? "text-[oklch(0.80_0.015_75)]" : "text-[oklch(0.40_0.03_55)]"
+                }`}
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Our Story
@@ -81,7 +89,6 @@ export default function HeroSection() {
           {/* Right: Hero Image */}
           <div className="lg:col-span-7 order-1 lg:order-2 relative">
             <div className="fade-up relative">
-              {/* Decorative frame */}
               <div className="absolute -top-4 -right-4 w-full h-full border border-[oklch(0.72_0.10_80/0.3)] hidden lg:block" />
               <img
                 src={HERO_IMAGE}
@@ -89,8 +96,11 @@ export default function HeroSection() {
                 className="relative w-full h-[50vh] lg:h-[75vh] object-cover"
                 loading="eager"
               />
-              {/* Overlay gradient for depth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.96_0.015_80/0.2)] to-transparent" />
+              <div
+                className={`absolute inset-0 bg-gradient-to-t ${
+                  isDark ? "from-[oklch(0.16_0.015_55/0.4)]" : "from-[oklch(0.96_0.015_80/0.2)]"
+                } to-transparent`}
+              />
             </div>
           </div>
         </div>
@@ -99,7 +109,9 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 opacity-60">
         <span
-          className="text-[0.65rem] tracking-[0.2em] uppercase text-[oklch(0.50_0.03_55)]"
+          className={`text-[0.65rem] tracking-[0.2em] uppercase ${
+            isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"
+          }`}
           style={{ fontFamily: "var(--font-body)" }}
         >
           Scroll

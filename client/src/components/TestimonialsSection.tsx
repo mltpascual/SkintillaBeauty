@@ -5,6 +5,7 @@
  */
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Star } from "lucide-react";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 const testimonials = [
   {
@@ -32,13 +33,14 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const sectionRef = useScrollReveal();
+  const { isDark } = useDarkMode();
 
   return (
     <section
       id="testimonials"
       ref={sectionRef}
-      className="py-24 lg:py-36"
-      style={{ background: "oklch(0.96 0.015 80)" }}
+      className="py-24 lg:py-36 transition-colors duration-500"
+      style={{ background: isDark ? "oklch(0.16 0.015 55)" : "oklch(0.96 0.015 80)" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
@@ -54,11 +56,11 @@ export default function TestimonialsSection() {
             <div className="gold-divider w-[80px]" />
           </div>
           <h2
-            className="fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold text-[oklch(0.25_0.03_55)]"
+            className={`fade-up text-[clamp(2rem,4vw,3.2rem)] leading-[1.15] font-semibold ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             What Our{" "}
-            <em className="font-normal italic text-[oklch(0.50_0.05_145)]">
+            <em className={`font-normal italic ${isDark ? "text-[oklch(0.60_0.06_145)]" : "text-[oklch(0.50_0.05_145)]"}`}>
               Community
             </em>{" "}
             Says
@@ -70,7 +72,7 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className={`fade-up relative p-8 bg-[oklch(0.98_0.008_80)] border border-[oklch(0.88_0.02_75)] rounded-xl transition-all duration-400 ease-out hover:-translate-y-2 hover:shadow-[0_16px_40px_oklch(0.25_0.03_55/0.10),0_6px_12px_oklch(0.25_0.03_55/0.05)] hover:border-[oklch(0.72_0.10_80/0.3)] group/testimonial ${
+              className={`fade-up relative p-8 ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.98_0.008_80)]"} ${isDark ? "border-[oklch(0.28_0.015_55)]" : "border-[oklch(0.88_0.02_75)]"} rounded-xl transition-all duration-400 ease-out hover:-translate-y-2 hover:shadow-[0_16px_40px_oklch(0.25_0.03_55/0.10),0_6px_12px_oklch(0.25_0.03_55/0.05)] hover:border-[oklch(0.72_0.10_80/0.3)] group/testimonial ${
                 i === 1 ? "md:-translate-y-6 md:hover:-translate-y-8" : ""
               }`}
             >
@@ -97,7 +99,7 @@ export default function TestimonialsSection() {
               </div>
 
               <p
-                className="text-[1.05rem] leading-[1.8] text-[oklch(0.35_0.03_55)] mb-8 italic"
+                className={`text-[1.05rem] leading-[1.8] ${isDark ? "text-[oklch(0.65_0.015_75)]" : "text-[oklch(0.40_0.03_55)]"} mb-8 italic`}
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 {t.quote}
@@ -106,13 +108,13 @@ export default function TestimonialsSection() {
               <div className="gold-divider w-8 mb-4" />
 
               <p
-                className="text-[0.85rem] font-medium text-[oklch(0.25_0.03_55)]"
+                className={`text-[0.85rem] font-medium ${isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"}`}
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {t.name}
               </p>
               <p
-                className="text-[0.72rem] tracking-[0.1em] uppercase text-[oklch(0.60_0.03_55)]"
+                className={`text-[0.72rem] tracking-[0.1em] uppercase ${isDark ? "text-[oklch(0.55_0.015_55)]" : "text-[oklch(0.50_0.03_55)]"}`}
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {t.title}

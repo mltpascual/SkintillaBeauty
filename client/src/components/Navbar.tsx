@@ -2,10 +2,13 @@
  * Skintilla Beauty — Botanical Atelier Design
  * Navbar: Floating navigation with warm cream background, gold accents
  * Mobile: Full-screen slide-in drawer with staggered link animations
+ * Dark mode aware — adapts colors based on theme
  * Typography: Cormorant Garamond for brand name, Jost for nav links
  */
 import { useState, useEffect, useCallback } from "react";
 import { useAnnouncementBar } from "@/components/AnnouncementBar";
+import { useTheme } from "@/contexts/ThemeContext";
+import ThemeToggle from "@/components/ThemeToggle";
 
 const navLinks = [
   { label: "Our Story", href: "#story" },
@@ -23,6 +26,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { visible: announcementVisible } = useAnnouncementBar();
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 40);
@@ -55,28 +60,36 @@ export default function Navbar() {
       <header
         className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[oklch(0.96_0.015_80/0.92)] backdrop-blur-md shadow-[0_1px_0_oklch(0.72_0.10_80/0.3)]"
+            ? isDark
+              ? "bg-[oklch(0.16_0.015_55/0.92)] backdrop-blur-md shadow-[0_1px_0_oklch(0.72_0.10_80/0.2)]"
+              : "bg-[oklch(0.96_0.015_80/0.92)] backdrop-blur-md shadow-[0_1px_0_oklch(0.72_0.10_80/0.3)]"
             : "bg-transparent"
         }`}
         style={{ top: announcementVisible ? "36px" : "0px" }}
       >
-        <nav className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
+        <nav className="max-w-[1400px] mx-auto px-6 lg:px-10 flex items-center justify-between h-16 lg:h-20">
           {/* Brand */}
           <a
             href="#"
-            className="font-[var(--font-display)] text-2xl lg:text-[1.75rem] font-semibold tracking-wide text-espresso relative z-[60]"
+            className={`text-2xl lg:text-[1.75rem] font-semibold tracking-wide relative z-[60] transition-colors duration-300 ${
+              isDark ? "text-[oklch(0.90_0.015_75)]" : "text-[oklch(0.25_0.03_55)]"
+            }`}
             style={{ fontFamily: "var(--font-display)" }}
           >
             Skintilla
           </a>
 
-          {/* Desktop Nav */}
-          <ul className="hidden lg:flex items-center gap-10">
+          {/* Desktop Nav — wider container, smaller text, tighter tracking for more space */}
+          <ul className="hidden xl:flex items-center gap-6 2xl:gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-[0.8rem] font-medium tracking-[0.15em] uppercase text-[oklch(0.40_0.03_55)] hover:text-[oklch(0.72_0.10_80)] transition-colors duration-300"
+                  className={`text-[0.7rem] 2xl:text-[0.75rem] font-medium tracking-[0.12em] uppercase transition-colors duration-300 whitespace-nowrap ${
+                    isDark
+                      ? "text-[oklch(0.70_0.015_75)] hover:text-[oklch(0.72_0.10_80)]"
+                      : "text-[oklch(0.40_0.03_55)] hover:text-[oklch(0.72_0.10_80)]"
+                  }`}
                   style={{ fontFamily: "var(--font-body)" }}
                 >
                   {link.label}
@@ -85,71 +98,85 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* CTA */}
-          <a
-            href="#bundles"
-            className="hidden lg:inline-flex items-center px-6 py-2.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.98_0.008_80)] transition-all duration-300"
-            style={{ fontFamily: "var(--font-body)" }}
-          >
-            Shop Now
-          </a>
+          {/* Right side: Theme toggle + CTA */}
+          <div className="hidden xl:flex items-center gap-4">
+            <ThemeToggle />
+            <a
+              href="#bundles"
+              className={`inline-flex items-center px-5 py-2 rounded-full text-[0.7rem] font-medium tracking-[0.12em] uppercase border transition-all duration-300 whitespace-nowrap ${
+                isDark
+                  ? "border-[oklch(0.72_0.10_80/0.5)] text-[oklch(0.80_0.015_75)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.16_0.015_55)]"
+                  : "border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.98_0.008_80)]"
+              }`}
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              Shop Now
+            </a>
+          </div>
 
-          {/* Hamburger Toggle — animated bars morph to X */}
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden relative z-[60] w-10 h-10 flex items-center justify-center"
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-          >
-            <div className="w-6 h-5 relative flex flex-col justify-between">
-              {/* Top bar */}
-              <span
-                className={`block h-[1.5px] bg-[oklch(0.30_0.03_55)] rounded-full transition-all duration-400 ease-[cubic-bezier(0.77,0,0.175,1)] origin-center ${
-                  mobileOpen
-                    ? "rotate-45 translate-y-[9.5px]"
-                    : "rotate-0 translate-y-0"
-                }`}
-              />
-              {/* Middle bar */}
-              <span
-                className={`block h-[1.5px] bg-[oklch(0.30_0.03_55)] rounded-full transition-all duration-300 ease-[cubic-bezier(0.77,0,0.175,1)] ${
-                  mobileOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
-                }`}
-              />
-              {/* Bottom bar */}
-              <span
-                className={`block h-[1.5px] bg-[oklch(0.30_0.03_55)] rounded-full transition-all duration-400 ease-[cubic-bezier(0.77,0,0.175,1)] origin-center ${
-                  mobileOpen
-                    ? "-rotate-45 -translate-y-[9.5px]"
-                    : "rotate-0 translate-y-0"
-                }`}
-              />
-            </div>
-          </button>
+          {/* Mobile: Theme toggle + Hamburger */}
+          <div className="xl:hidden flex items-center gap-3 relative z-[60]">
+            <ThemeToggle />
+            <button
+              onClick={toggleMenu}
+              className="w-10 h-10 flex items-center justify-center"
+              aria-label="Toggle menu"
+              aria-expanded={mobileOpen}
+            >
+              <div className="w-6 h-5 relative flex flex-col justify-between">
+                <span
+                  className={`block h-[1.5px] rounded-full transition-all duration-400 ease-[cubic-bezier(0.77,0,0.175,1)] origin-center ${
+                    isDark ? "bg-[oklch(0.85_0.015_75)]" : "bg-[oklch(0.30_0.03_55)]"
+                  } ${
+                    mobileOpen
+                      ? "rotate-45 translate-y-[9.5px]"
+                      : "rotate-0 translate-y-0"
+                  }`}
+                />
+                <span
+                  className={`block h-[1.5px] rounded-full transition-all duration-300 ease-[cubic-bezier(0.77,0,0.175,1)] ${
+                    isDark ? "bg-[oklch(0.85_0.015_75)]" : "bg-[oklch(0.30_0.03_55)]"
+                  } ${
+                    mobileOpen ? "opacity-0 scale-x-0" : "opacity-100 scale-x-100"
+                  }`}
+                />
+                <span
+                  className={`block h-[1.5px] rounded-full transition-all duration-400 ease-[cubic-bezier(0.77,0,0.175,1)] origin-center ${
+                    isDark ? "bg-[oklch(0.85_0.015_75)]" : "bg-[oklch(0.30_0.03_55)]"
+                  } ${
+                    mobileOpen
+                      ? "-rotate-45 -translate-y-[9.5px]"
+                      : "rotate-0 translate-y-0"
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
         </nav>
       </header>
 
       {/* Full-screen Mobile Drawer */}
       <div
-        className={`fixed inset-0 z-[55] lg:hidden transition-all duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] ${
+        className={`fixed inset-0 z-[55] xl:hidden transition-all duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] ${
           mobileOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
         {/* Backdrop */}
         <div
-          className={`absolute inset-0 bg-[oklch(0.20_0.03_55/0.3)] backdrop-blur-sm transition-opacity duration-500 ${
-            mobileOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 backdrop-blur-sm transition-opacity duration-500 ${
+            isDark ? "bg-[oklch(0.10_0.01_55/0.5)]" : "bg-[oklch(0.20_0.03_55/0.3)]"
+          } ${mobileOpen ? "opacity-100" : "opacity-0"}`}
           onClick={closeMenu}
         />
 
-        {/* Drawer panel — slides in from right */}
+        {/* Drawer panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-full max-w-[420px] bg-[oklch(0.97_0.012_80)] shadow-[-8px_0_40px_oklch(0.20_0.03_55/0.15)] transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] ${
-            mobileOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`absolute top-0 right-0 h-full w-full max-w-[420px] transition-transform duration-500 ease-[cubic-bezier(0.77,0,0.175,1)] ${
+            isDark
+              ? "bg-[oklch(0.18_0.015_55)] shadow-[-8px_0_40px_oklch(0.05_0.01_55/0.4)]"
+              : "bg-[oklch(0.97_0.012_80)] shadow-[-8px_0_40px_oklch(0.20_0.03_55/0.15)]"
+          } ${mobileOpen ? "translate-x-0" : "translate-x-full"}`}
         >
-          {/* Drawer content */}
           <div className="flex flex-col justify-center h-full px-10 pt-20 pb-10">
             {/* Gold decorative line */}
             <div
@@ -175,21 +202,22 @@ export default function Navbar() {
                     transitionDelay: mobileOpen ? `${150 + i * 60}ms` : "0ms",
                   }}
                 >
-                  {/* Index number */}
                   <span
                     className="text-[0.65rem] font-light tracking-wider text-[oklch(0.72_0.10_80)] mr-4 tabular-nums"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  {/* Link label */}
                   <span
-                    className="text-[1.6rem] font-semibold text-[oklch(0.25_0.03_55)] group-hover:text-[oklch(0.50_0.05_145)] transition-colors duration-300 leading-tight"
+                    className={`text-[1.6rem] font-semibold transition-colors duration-300 leading-tight ${
+                      isDark
+                        ? "text-[oklch(0.85_0.015_75)] group-hover:text-[oklch(0.72_0.10_80)]"
+                        : "text-[oklch(0.25_0.03_55)] group-hover:text-[oklch(0.50_0.05_145)]"
+                    }`}
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {link.label}
                   </span>
-                  {/* Hover arrow */}
                   <svg
                     className="ml-auto w-5 h-5 text-[oklch(0.72_0.10_80)] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"
                     fill="none"
@@ -228,10 +256,10 @@ export default function Navbar() {
               >
                 Shop Now
               </a>
-
-              {/* Brand tagline */}
               <p
-                className="mt-6 text-center text-[0.7rem] tracking-[0.15em] uppercase text-[oklch(0.60_0.03_55)]"
+                className={`mt-6 text-center text-[0.7rem] tracking-[0.15em] uppercase ${
+                  isDark ? "text-[oklch(0.50_0.015_55)]" : "text-[oklch(0.60_0.03_55)]"
+                }`}
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Est. 2019 — Luxury Skincare
