@@ -276,11 +276,11 @@ export default function ProductsSection() {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-6">
             {/* Large featured image */}
             <div className="lg:col-span-5 fade-up">
-              <div className="relative group overflow-hidden">
+              <div className="relative group overflow-hidden rounded-xl transition-shadow duration-500 hover:shadow-[0_20px_50px_oklch(0.25_0.03_55/0.12),0_8px_16px_oklch(0.25_0.03_55/0.06)]">
                 <img
                   src={PRODUCT_IMAGE}
                   alt="Skintilla Beauty product collection on stone pedestal"
-                  className="w-full h-[400px] lg:h-[600px] object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="w-full h-[400px] lg:h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-[1.05] group-hover:brightness-[1.02]"
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.25_0.03_55/0.4)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -300,14 +300,14 @@ export default function ProductsSection() {
               {products.map((product) => (
                 <div
                   key={product.name}
-                  className="fade-up group cursor-pointer"
+                  className="fade-up group cursor-pointer transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_16px_40px_oklch(0.25_0.03_55/0.10),0_6px_12px_oklch(0.25_0.03_55/0.06)] rounded-xl p-3 -m-3"
                   onClick={() => openProduct(product)}
                 >
-                  <div className="relative overflow-hidden mb-4 bg-[oklch(0.93_0.02_75)]">
+                  <div className="relative overflow-hidden mb-4 bg-[oklch(0.93_0.02_75)] rounded-lg">
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-full h-[240px] lg:h-[260px] object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                      className="w-full h-[240px] lg:h-[260px] object-cover transition-all duration-700 ease-out group-hover:scale-[1.08] group-hover:brightness-[1.03]"
                       loading="lazy"
                     />
                     {/* Hover overlay with "View Details" */}
@@ -330,10 +330,11 @@ export default function ProductsSection() {
                         {product.category}
                       </p>
                       <h3
-                        className="text-[1.3rem] font-semibold text-[oklch(0.25_0.03_55)] group-hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300"
+                        className="text-[1.3rem] font-semibold text-[oklch(0.25_0.03_55)] group-hover:text-[oklch(0.38_0.04_145)] transition-colors duration-300 relative inline-block"
                         style={{ fontFamily: "var(--font-display)" }}
                       >
                         {product.name}
+                        <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-[oklch(0.72_0.10_80)] group-hover:w-full transition-all duration-500 ease-out" />
                       </h3>
                       <p
                         className="text-[0.85rem] text-[oklch(0.50_0.03_55)] mt-1 font-light leading-[1.6]"
@@ -343,7 +344,7 @@ export default function ProductsSection() {
                       </p>
                     </div>
                     <span
-                      className="text-[1.1rem] font-medium text-[oklch(0.38_0.04_145)] shrink-0 ml-4"
+                      className="text-[1.1rem] font-medium text-[oklch(0.38_0.04_145)] shrink-0 ml-4 transition-all duration-300 group-hover:scale-110 group-hover:text-[oklch(0.50_0.05_145)]"
                       style={{ fontFamily: "var(--font-display)" }}
                     >
                       {product.price}

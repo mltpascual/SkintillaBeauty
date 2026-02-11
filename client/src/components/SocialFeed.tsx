@@ -107,7 +107,7 @@ export default function SocialFeed() {
           {socialPosts.map((post, i) => (
             <div
               key={i}
-              className={`fade-up relative overflow-hidden group cursor-pointer ${
+              className={`fade-up relative overflow-hidden group cursor-pointer rounded-lg transition-all duration-400 ease-out hover:-translate-y-1 hover:shadow-[0_12px_30px_oklch(0.25_0.03_55/0.12)] hover:z-10 ${
                 post.tall ? "row-span-2" : ""
               }`}
               onMouseEnter={() => setHoveredIdx(i)}
@@ -116,7 +116,7 @@ export default function SocialFeed() {
               <img
                 src={post.image}
                 alt={post.caption}
-                className={`w-full object-cover transition-transform duration-700 group-hover:scale-[1.08] ${
+                className={`w-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.08] group-hover:brightness-[1.05] ${
                   post.tall ? "h-full min-h-[400px]" : "aspect-square"
                 }`}
                 loading="lazy"

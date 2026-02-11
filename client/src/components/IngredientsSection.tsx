@@ -95,13 +95,13 @@ export default function IngredientsSection() {
               return (
                 <div
                   key={item.name}
-                  className="fade-up flex items-start gap-5 p-5 bg-[oklch(0.98_0.008_80/0.7)] backdrop-blur-sm border border-[oklch(0.88_0.02_75)] hover:border-[oklch(0.72_0.10_80/0.4)] transition-colors duration-300"
+                  className="fade-up flex items-start gap-5 p-5 bg-[oklch(0.98_0.008_80/0.7)] backdrop-blur-sm border border-[oklch(0.88_0.02_75)] rounded-xl transition-all duration-400 ease-out hover:border-[oklch(0.72_0.10_80/0.4)] hover:-translate-y-1 hover:shadow-[0_12px_30px_oklch(0.25_0.03_55/0.08),0_4px_8px_oklch(0.25_0.03_55/0.04)] group/card"
                 >
-                  <div className="shrink-0 w-10 h-10 flex items-center justify-center border border-[oklch(0.72_0.10_80/0.3)]">
+                  <div className="shrink-0 w-10 h-10 flex items-center justify-center border border-[oklch(0.72_0.10_80/0.3)] rounded-lg transition-all duration-400 group-hover/card:bg-[oklch(0.72_0.10_80/0.1)] group-hover/card:border-[oklch(0.72_0.10_80/0.5)]">
                     <Icon
                       size={18}
                       strokeWidth={1.5}
-                      className="text-[oklch(0.50_0.05_145)]"
+                      className="text-[oklch(0.50_0.05_145)] transition-transform duration-400 group-hover/card:scale-110"
                     />
                   </div>
                   <div>

@@ -220,7 +220,7 @@ export default function BundlesSection() {
               return (
                 <div
                   key={bundle.name}
-                  className={`fade-up relative p-6 border transition-all duration-300 cursor-pointer group ${
+                  className={`fade-up relative p-6 border rounded-xl transition-all duration-400 ease-out cursor-pointer group hover:-translate-y-1 hover:shadow-[0_14px_35px_oklch(0.25_0.03_55/0.09),0_5px_10px_oklch(0.25_0.03_55/0.05)] ${
                     bundle.popular
                       ? "border-[oklch(0.72_0.10_80)] bg-[oklch(0.96_0.015_80)]"
                       : "border-[oklch(0.88_0.02_75)] bg-[oklch(0.98_0.008_80)] hover:border-[oklch(0.72_0.10_80/0.5)]"
@@ -237,11 +237,11 @@ export default function BundlesSection() {
                   )}
 
                   <div className="flex items-start gap-5">
-                    <div className="shrink-0 w-10 h-10 flex items-center justify-center border border-[oklch(0.72_0.10_80/0.3)]">
+                    <div className="shrink-0 w-10 h-10 flex items-center justify-center border border-[oklch(0.72_0.10_80/0.3)] rounded-lg transition-all duration-400 group-hover:bg-[oklch(0.72_0.10_80/0.1)] group-hover:border-[oklch(0.72_0.10_80/0.5)]">
                       <Icon
                         size={18}
                         strokeWidth={1.5}
-                        className="text-[oklch(0.72_0.10_80)]"
+                        className="text-[oklch(0.72_0.10_80)] transition-transform duration-400 group-hover:scale-110"
                       />
                     </div>
 

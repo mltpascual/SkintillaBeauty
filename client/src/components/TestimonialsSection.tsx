@@ -70,13 +70,13 @@ export default function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className={`fade-up relative p-8 bg-[oklch(0.98_0.008_80)] border border-[oklch(0.88_0.02_75)] ${
-                i === 1 ? "md:-translate-y-6" : ""
+              className={`fade-up relative p-8 bg-[oklch(0.98_0.008_80)] border border-[oklch(0.88_0.02_75)] rounded-xl transition-all duration-400 ease-out hover:-translate-y-2 hover:shadow-[0_16px_40px_oklch(0.25_0.03_55/0.10),0_6px_12px_oklch(0.25_0.03_55/0.05)] hover:border-[oklch(0.72_0.10_80/0.3)] group/testimonial ${
+                i === 1 ? "md:-translate-y-6 md:hover:-translate-y-8" : ""
               }`}
             >
               {/* Gold quote mark */}
               <span
-                className="block text-[4rem] leading-[1] text-[oklch(0.72_0.10_80/0.3)] mb-2"
+                className="block text-[4rem] leading-[1] text-[oklch(0.72_0.10_80/0.3)] mb-2 transition-all duration-400 group-hover/testimonial:text-[oklch(0.72_0.10_80/0.6)] group-hover/testimonial:scale-110 origin-left"
                 style={{ fontFamily: "var(--font-display)" }}
                 aria-hidden="true"
               >
