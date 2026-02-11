@@ -63,7 +63,7 @@ export default function Navbar() {
         {/* CTA */}
         <a
           href="#bundles"
-          className="hidden lg:inline-flex items-center px-6 py-2.5 text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.98_0.008_80)] transition-all duration-300"
+          className="hidden lg:inline-flex items-center px-6 py-2.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.98_0.008_80)] transition-all duration-300"
           style={{ fontFamily: "var(--font-body)" }}
         >
           Shop Now
@@ -103,7 +103,7 @@ export default function Navbar() {
           <a
             href="#bundles"
             onClick={() => setMobileOpen(false)}
-            className="mt-5 inline-flex items-center px-6 py-2.5 text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.98_0.008_80)] transition-all duration-300"
+            className="mt-5 inline-flex items-center px-6 py-2.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80)] hover:text-[oklch(0.98_0.008_80)] transition-all duration-300"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Shop Now

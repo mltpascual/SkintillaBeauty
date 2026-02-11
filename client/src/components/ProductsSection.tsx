@@ -313,7 +313,7 @@ export default function ProductsSection() {
                     {/* Hover overlay with "View Details" */}
                     <div className="absolute inset-0 bg-[oklch(0.38_0.04_145/0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <span
-                        className="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-white bg-[oklch(0.38_0.04_145/0.85)] px-5 py-2.5 backdrop-blur-sm translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400"
+                        className="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-white bg-[oklch(0.38_0.04_145/0.85)] px-5 py-2.5 rounded-full backdrop-blur-sm translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400"
                         style={{ fontFamily: "var(--font-body)" }}
                       >
                         View Details

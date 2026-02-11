@@ -135,13 +135,13 @@ function ImageSlider({ src }: { src: string }) {
 
       {/* Labels */}
       <div
-        className="absolute top-4 left-4 px-3 py-1 bg-[oklch(0.25_0.03_55/0.7)] backdrop-blur-sm text-[oklch(0.98_0.008_80)] text-[0.6rem] tracking-[0.2em] uppercase z-10"
+        className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[oklch(0.25_0.03_55/0.7)] backdrop-blur-sm text-[oklch(0.98_0.008_80)] text-[0.6rem] tracking-[0.2em] uppercase z-10"
         style={{ fontFamily: "var(--font-body)" }}
       >
         Before
       </div>
       <div
-        className="absolute top-4 right-4 px-3 py-1 bg-[oklch(0.72_0.10_80/0.8)] backdrop-blur-sm text-[oklch(0.98_0.008_80)] text-[0.6rem] tracking-[0.2em] uppercase z-10"
+        className="absolute top-4 right-4 px-3 py-1 rounded-full bg-[oklch(0.72_0.10_80/0.8)] backdrop-blur-sm text-[oklch(0.98_0.008_80)] text-[0.6rem] tracking-[0.2em] uppercase z-10"
         style={{ fontFamily: "var(--font-body)" }}
       >
         After

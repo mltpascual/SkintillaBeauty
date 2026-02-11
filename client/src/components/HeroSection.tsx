@@ -63,14 +63,14 @@ export default function HeroSection() {
             <div className="fade-up flex flex-wrap gap-4">
               <a
                 href="#products"
-                className="inline-flex items-center px-8 py-3.5 text-[0.75rem] font-medium tracking-[0.15em] uppercase bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] transition-all duration-300"
+                className="inline-flex items-center px-8 py-3.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] transition-all duration-300"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Explore Collection
               </a>
               <a
                 href="#story"
-                className="inline-flex items-center px-8 py-3.5 text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80/0.1)] transition-all duration-300"
+                className="inline-flex items-center px-8 py-3.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase border border-[oklch(0.72_0.10_80)] text-[oklch(0.40_0.03_55)] hover:bg-[oklch(0.72_0.10_80/0.1)] transition-all duration-300"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 Our Story

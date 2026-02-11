@@ -187,7 +187,7 @@ export default function FAQSection() {
           </p>
           <a
             href="mailto:hello@skintillabeauty.com"
-            className="inline-flex items-center px-8 py-3.5 border border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)] transition-all duration-400 text-[0.7rem] font-medium tracking-[0.2em] uppercase"
+            className="inline-flex items-center px-8 py-3.5 rounded-full border border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)] transition-all duration-400 text-[0.7rem] font-medium tracking-[0.2em] uppercase"
             style={{ fontFamily: "var(--font-body)" }}
           >
             Contact Us

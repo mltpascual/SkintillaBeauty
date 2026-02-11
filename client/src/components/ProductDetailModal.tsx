@@ -79,7 +79,7 @@ export default function ProductDetailModal({
             {/* Category badge */}
             <div className="absolute top-5 left-5">
               <span
-                className="inline-block px-3 py-1 text-[0.6rem] font-medium tracking-[0.2em] uppercase bg-[oklch(0.97_0.008_80/0.9)] text-[oklch(0.38_0.04_145)] backdrop-blur-sm"
+                className="inline-block px-3 py-1 rounded-full text-[0.6rem] font-medium tracking-[0.2em] uppercase bg-[oklch(0.97_0.008_80/0.9)] text-[oklch(0.38_0.04_145)] backdrop-blur-sm"
                 style={{ fontFamily: "var(--font-body)" }}
               >
                 {product.category}
@@ -326,7 +326,7 @@ export default function ProductDetailModal({
             {/* Desktop CTA — hidden on mobile (sticky bar replaces it) */}
             <button
               onClick={handleAddToCart}
-              className="hidden md:flex mt-6 w-full py-3.5 items-center justify-center gap-2 text-[0.7rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)]"
+              className="hidden md:flex mt-6 w-full py-3.5 rounded-full items-center justify-center gap-2 text-[0.7rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               <ShoppingBag className="h-4 w-4" />
@@ -354,7 +354,7 @@ export default function ProductDetailModal({
             </div>
             <button
               onClick={handleAddToCart}
-              className="flex items-center gap-2 px-6 py-3 text-[0.65rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] active:scale-[0.97]"
+              className="flex items-center gap-2 px-6 py-3 rounded-full text-[0.65rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] active:scale-[0.97]"
               style={{ fontFamily: "var(--font-body)" }}
             >
               <ShoppingBag className="h-4 w-4" />

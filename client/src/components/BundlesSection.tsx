@@ -229,7 +229,7 @@ export default function BundlesSection() {
                 >
                   {bundle.popular && (
                     <span
-                      className="absolute -top-3 right-6 px-3 py-1 bg-[oklch(0.72_0.10_80)] text-[oklch(0.98_0.008_80)] text-[0.6rem] tracking-[0.2em] uppercase"
+                      className="absolute -top-3 right-6 px-3 py-1 rounded-full bg-[oklch(0.72_0.10_80)] text-[oklch(0.98_0.008_80)] text-[0.6rem] tracking-[0.2em] uppercase"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Most Popular

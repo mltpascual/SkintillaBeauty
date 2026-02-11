@@ -222,7 +222,7 @@ export default function SkincareQuiz() {
                   </p>
                   <button
                     onClick={() => setStarted(true)}
-                    className="inline-flex items-center gap-2 px-8 py-3.5 text-[0.75rem] font-medium tracking-[0.15em] uppercase bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] transition-all duration-300"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     Start Quiz
@@ -336,7 +336,7 @@ export default function SkincareQuiz() {
                     <button
                       onClick={handleNext}
                       disabled={!selectedOption}
-                      className={`inline-flex items-center gap-2 px-7 py-3 text-[0.75rem] font-medium tracking-[0.15em] uppercase transition-all duration-300 ${
+                      className={`inline-flex items-center gap-2 px-7 py-3 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase transition-all duration-300 ${
                         selectedOption
                           ? "bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)]"
                           : "bg-[oklch(0.88_0.02_75)] text-[oklch(0.65_0.02_55)] cursor-not-allowed"
@@ -435,7 +435,7 @@ export default function SkincareQuiz() {
                   <div className="flex flex-col sm:flex-row items-center gap-3">
                     <a
                       href="#bundles"
-                      className="inline-flex items-center gap-2 px-8 py-3.5 text-[0.75rem] font-medium tracking-[0.15em] uppercase bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] transition-all duration-300"
+                      className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-[0.75rem] font-medium tracking-[0.15em] uppercase bg-[oklch(0.38_0.04_145)] text-[oklch(0.98_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] transition-all duration-300"
                       style={{ fontFamily: "var(--font-body)" }}
                     >
                       Shop This Bundle

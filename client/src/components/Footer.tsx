@@ -52,13 +52,13 @@ export default function Footer() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
               required
-              className="flex-1 px-5 py-3 bg-[oklch(0.30_0.03_55)] border border-[oklch(0.40_0.03_55)] text-[oklch(0.90_0.01_55)] placeholder:text-[oklch(0.50_0.02_55)] text-[0.85rem] tracking-wide focus:outline-none focus:border-[oklch(0.72_0.10_80)] transition-colors"
+              className="flex-1 px-5 py-3 rounded-full bg-[oklch(0.30_0.03_55)] border border-[oklch(0.40_0.03_55)] text-[oklch(0.90_0.01_55)] placeholder:text-[oklch(0.50_0.02_55)] text-[0.85rem] tracking-wide focus:outline-none focus:border-[oklch(0.72_0.10_80)] transition-colors"
               style={{ fontFamily: "var(--font-body)" }}
               aria-label="Email address"
             />
             <button
               type="submit"
-              className="px-7 py-3 bg-[oklch(0.72_0.10_80)] text-[oklch(0.25_0.03_55)] text-[0.72rem] font-medium tracking-[0.15em] uppercase hover:bg-[oklch(0.78_0.10_80)] transition-colors duration-300"
+              className="px-7 py-3 rounded-full bg-[oklch(0.72_0.10_80)] text-[oklch(0.25_0.03_55)] text-[0.72rem] font-medium tracking-[0.15em] uppercase hover:bg-[oklch(0.78_0.10_80)] transition-colors duration-300"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Subscribe

@@ -168,7 +168,7 @@ export default function SocialFeed() {
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-3.5 border border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)] transition-all duration-400 group"
+            className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full border border-[oklch(0.38_0.04_145)] text-[oklch(0.38_0.04_145)] hover:bg-[oklch(0.38_0.04_145)] hover:text-[oklch(0.97_0.008_80)] transition-all duration-400 group"
           >
             <Instagram className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
             <span
