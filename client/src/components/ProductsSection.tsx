@@ -1,19 +1,20 @@
 /*
  * Skintilla Beauty — Botanical Atelier Design
- * Products: Asymmetric grid of product cards with hover reveals
+ * Products: Asymmetric grid of product cards with video hover reveals
  * Gold dividers, editorial typography, warm palette
- * Now with detail modal on click
+ * Video clips play on hover, replacing static image zoom
  */
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import ProductDetailModal, {
   type ProductData,
 } from "@/components/ProductDetailModal";
+import ProductVideoHover from "@/components/ProductVideoHover";
 
 const PRODUCT_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-2_1770802535000_na1fn_cHJvZHVjdC1jb2xsZWN0aW9u.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTJfMTc3MDgwMjUzNTAwMF9uYTFmbl9jSEp2WkhWamRDMWpiMnhzWldOMGFXOXUuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=cKPfrKtJGK0XG9WglSaJ-uYoUWSR2zYq6D6a76L0hNbf9yJXto9Ct1xpoc7Lj35E7FWLmUnrozRRFlbM-drdq1PfXKfZccnK99Xwoo89pDg~gBRHfqhy5nIkWMUmyf1ooNSObB5XST2TvJQmFuWzN1iRyybyf7gSnQOPUNifwBZwuvGy8dT91ndTCpub1UEUGVXfqe4Sc1LLRnjgFpWfFCCLUyKCdfq7ZCyqRsBUwAb-2ToPDXHaGaHdaQ32oZ4Zo3sqriKXUarrfn1zfbFB8j3-EraYRbffSkWQO8jEdbBGgQCq8a17CPakp2d6K64Mc2dX4L4cuAE-ysfKLgiO~Q__";
 
-const products: ProductData[] = [
+const products: (ProductData & { videoSrc: string })[] = [
   {
     name: "Radiance Serum",
     category: "Face Serum",
@@ -23,6 +24,8 @@ const products: ProductData[] = [
     size: "30ml / 1 fl oz",
     image:
       "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=600&h=800&fit=crop&q=80",
+    videoSrc:
+      "https://videos.pexels.com/video-files/7305132/7305132-sd_960_506_25fps.mp4",
     ingredients: [
       "Vitamin C (L-Ascorbic Acid) — Brightens and evens skin tone",
       "Rosehip Seed Oil — Rich in retinoids and essential fatty acids",
@@ -74,6 +77,8 @@ const products: ProductData[] = [
     size: "50ml / 1.7 fl oz",
     image:
       "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&h=800&fit=crop&q=80",
+    videoSrc:
+      "https://videos.pexels.com/video-files/6664395/6664395-sd_960_464_30fps.mp4",
     ingredients: [
       "Shea Butter — Intense nourishment and softening",
       "Hyaluronic Acid — Multi-layer hydration",
@@ -125,6 +130,8 @@ const products: ProductData[] = [
     size: "120ml / 4 fl oz",
     image:
       "https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?w=600&h=800&fit=crop&q=80",
+    videoSrc:
+      "https://videos.pexels.com/video-files/7011328/7011328-sd_640_360_25fps.mp4",
     ingredients: [
       "Chamomile Extract — Calms redness and irritation",
       "Witch Hazel — Natural astringent for pore refinement",
@@ -176,6 +183,8 @@ const products: ProductData[] = [
     size: "15ml / 0.5 fl oz",
     image:
       "https://images.unsplash.com/photo-1571781926291-c477ebfd024b?w=600&h=800&fit=crop&q=80",
+    videoSrc:
+      "https://videos.pexels.com/video-files/7305327/7305327-sd_506_960_25fps.mp4",
     ingredients: [
       "Peptide Complex — Stimulates collagen for firming",
       "Caffeine — Reduces puffiness and dark circles",
@@ -284,7 +293,7 @@ export default function ProductsSection() {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.25_0.03_55/0.4)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                <div className="absolute bottom-6 left-6 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
                   <p
                     className="text-[oklch(0.98_0.008_80)] text-[0.75rem] tracking-[0.15em] uppercase"
                     style={{ fontFamily: "var(--font-body)" }}
@@ -303,15 +312,16 @@ export default function ProductsSection() {
                   className="fade-up group cursor-pointer transition-all duration-500 ease-out hover:-translate-y-2 hover:shadow-[0_16px_40px_oklch(0.25_0.03_55/0.10),0_6px_12px_oklch(0.25_0.03_55/0.06)] rounded-xl p-3 -m-3"
                   onClick={() => openProduct(product)}
                 >
+                  {/* Video hover container */}
                   <div className="relative overflow-hidden mb-4 bg-[oklch(0.93_0.02_75)] rounded-lg">
-                    <img
-                      src={product.image}
+                    <ProductVideoHover
+                      image={product.image}
+                      videoSrc={product.videoSrc}
                       alt={product.name}
-                      className="w-full h-[240px] lg:h-[260px] object-cover transition-all duration-700 ease-out group-hover:scale-[1.08] group-hover:brightness-[1.03]"
-                      loading="lazy"
+                      className="w-full h-[240px] lg:h-[260px]"
                     />
                     {/* Hover overlay with "View Details" */}
-                    <div className="absolute inset-0 bg-[oklch(0.38_0.04_145/0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-[oklch(0.38_0.04_145/0.15)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
                       <span
                         className="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-white bg-[oklch(0.38_0.04_145/0.85)] px-5 py-2.5 rounded-full backdrop-blur-sm translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400"
                         style={{ fontFamily: "var(--font-body)" }}
