@@ -12,14 +12,16 @@ import ProductDetailModal, {
 import ProductVideoHover from "@/components/ProductVideoHover";
 import { addRecentlyViewed } from "@/components/RecentlyViewed";
 import { useDarkMode } from "@/hooks/useDarkMode";
+import { useParallax } from "@/hooks/useParallax";
 
 const PRODUCT_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-2_1770802535000_na1fn_cHJvZHVjdC1jb2xsZWN0aW9u.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTJfMTc3MDgwMjUzNTAwMF9uYTFmbl9jSEp2WkhWamRDMWpiMnhzWldOMGFXOXUuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=cKPfrKtJGK0XG9WglSaJ-uYoUWSR2zYq6D6a76L0hNbf9yJXto9Ct1xpoc7Lj35E7FWLmUnrozRRFlbM-drdq1PfXKfZccnK99Xwoo89pDg~gBRHfqhy5nIkWMUmyf1ooNSObB5XST2TvJQmFuWzN1iRyybyf7gSnQOPUNifwBZwuvGy8dT91ndTCpub1UEUGVXfqe4Sc1LLRnjgFpWfFCCLUyKCdfq7ZCyqRsBUwAb-2ToPDXHaGaHdaQ32oZ4Zo3sqriKXUarrfn1zfbFB8j3-EraYRbffSkWQO8jEdbBGgQCq8a17CPakp2d6K64Mc2dX4L4cuAE-ysfKLgiO~Q__";
 
-const products: (ProductData & { videoSrc: string })[] = [
+const products: (ProductData & { videoSrc: string; isNew?: boolean })[] = [
   {
     name: "Radiance Serum",
     category: "Face Serum",
+    isNew: true,
     description:
       "Vitamin C & rosehip oil blend for luminous, even-toned skin",
     price: "$68",
@@ -179,6 +181,7 @@ const products: (ProductData & { videoSrc: string })[] = [
   {
     name: "Eye Revival Cream",
     category: "Eye Care",
+    isNew: true,
     description:
       "Peptide-rich formula to brighten dark circles and firm delicate skin",
     price: "$58",
@@ -234,6 +237,7 @@ const products: (ProductData & { videoSrc: string })[] = [
 export default function ProductsSection() {
   const { isDark } = useDarkMode();
   const sectionRef = useScrollReveal();
+  const { ref: parallaxRef, transform: parallaxTransform } = useParallax(0.1);
   const [selectedProduct, setSelectedProduct] = useState<ProductData | null>(
     null
   );
@@ -298,12 +302,13 @@ export default function ProductsSection() {
           {/* Featured product image + grid */}
           <div className="grid lg:grid-cols-12 gap-10 items-start">
             {/* Large featured image */}
-            <div className="lg:col-span-5 fade-up">
+            <div className="lg:col-span-5 fade-up" ref={parallaxRef}>
               <div className="relative group overflow-hidden rounded-xl transition-shadow duration-500 hover:shadow-[0_20px_50px_oklch(0.25_0.03_55/0.12),0_8px_16px_oklch(0.25_0.03_55/0.06)]">
                 <img
                   src={PRODUCT_IMAGE}
                   alt="Skintilla Beauty product collection on stone pedestal"
-                  className="w-full h-[400px] lg:h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-[1.05] group-hover:brightness-[1.02]"
+                  className="w-full h-[400px] lg:h-[600px] object-cover transition-all duration-700 ease-out group-hover:scale-[1.05] group-hover:brightness-[1.02] parallax-img"
+                  style={{ transform: parallaxTransform }}
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.25_0.03_55/0.4)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -328,6 +333,22 @@ export default function ProductsSection() {
                 >
                   {/* Video hover container */}
                   <div className={`relative overflow-hidden mb-4 ${isDark ? "bg-[oklch(0.20_0.015_55)]" : "bg-[oklch(0.93_0.02_75)]"} rounded-lg`}>
+                    {/* New Arrivals badge */}
+                    {product.isNew && (
+                      <div className="absolute top-3 left-3 z-10">
+                        <span
+                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[0.6rem] font-medium tracking-[0.15em] uppercase backdrop-blur-md shadow-lg animate-[newBadgePulse_3s_ease-in-out_infinite]"
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            background: isDark ? "oklch(0.50 0.05 145 / 0.9)" : "oklch(0.38 0.04 145 / 0.9)",
+                            color: "oklch(0.98 0.008 80)",
+                          }}
+                        >
+                          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[oklch(0.72_0.10_80)] animate-ping" style={{ animationDuration: "2s" }} />
+                          New Arrival
+                        </span>
+                      </div>
+                    )}
                     <ProductVideoHover
                       image={product.image}
                       videoSrc={product.videoSrc}

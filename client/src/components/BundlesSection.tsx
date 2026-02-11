@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { toast } from "sonner";
 import { Gift, Sparkles, Package, Timer } from "lucide-react";
+import ShippingCalculator from "@/components/ShippingCalculator";
 import { useDarkMode } from "@/hooks/useDarkMode";
 
 const BUNDLE_IMAGE =
@@ -312,6 +313,9 @@ export default function BundlesSection() {
             })}
           </div>
         </div>
+
+        {/* Shipping Calculator */}
+        <ShippingCalculator />
       </div>
     </section>
   );

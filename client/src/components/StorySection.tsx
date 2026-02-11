@@ -5,6 +5,7 @@
  */
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useParallax } from "@/hooks/useParallax";
 
 const LIFESTYLE_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-4_1770802525000_na1fn_bGlmZXN0eWxlLXJpdHVhbA.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTRfMTc3MDgwMjUyNTAwMF9uYTFmbl9iR2xtWlhOMGVXeGxMWEpwZEhWaGJBLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=sia9mqFyzLJqcXFuh~E6KgeXZqiMqHm2WCpMLQfACepGmkY0dXhaWg3vp54c9JocvCtnO6dppB3x7ZK9XA~Y3FR8TdZYbTksKJDL59gMtJtUTQTcq2w-Gq~f4yJqeqh03o7yQxkXcMU12yYq3LnmKtA8tN8nvEc3Q3BQfUwQ~kCrBs7WS4XwKyfmvJTcdnM8kpxzbkhxJZVTQilqgorg7CxPV6CiEpNjynfj0XoZ~R2vrkz~PGmLJEobbRTjHcnWXW7wkVlcQKTH561cofRnMj4kj4PV-EMYsTv0vu15a22Za9smCdSsX6dX0e7TLximEkZuzFmEXpHPGzOK6zrmrg__";
@@ -13,6 +14,7 @@ export default function StorySection() {
   const sectionRef = useScrollReveal();
   const { theme } = useTheme();
   const isDark = theme === "dark";
+  const { ref: parallaxRef, transform: parallaxTransform } = useParallax(0.1);
 
   return (
     <section
@@ -34,14 +36,17 @@ export default function StorySection() {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          <div className="fade-up relative">
+          <div className="fade-left relative" ref={parallaxRef}>
             <div className="absolute -bottom-5 -left-5 w-full h-full border border-[oklch(0.72_0.10_80/0.25)] hidden lg:block" />
-            <img
-              src={LIFESTYLE_IMAGE}
-              alt="A serene self-care ritual with Skintilla Beauty products"
-              className="relative w-full h-[400px] lg:h-[520px] object-cover"
-              loading="lazy"
-            />
+            <div className="overflow-hidden">
+              <img
+                src={LIFESTYLE_IMAGE}
+                alt="A serene self-care ritual with Skintilla Beauty products"
+                className="relative w-full h-[400px] lg:h-[520px] object-cover parallax-img"
+                style={{ transform: parallaxTransform }}
+                loading="lazy"
+              />
+            </div>
           </div>
 
           <div className="stagger-children">
