@@ -15,6 +15,7 @@ const navLinks = [
   { label: "Results", href: "#results" },
   { label: "Community", href: "#community" },
   { label: "FAQ", href: "#faq" },
+  { label: "Rewards", href: "#rewards" },
 ];
 
 export default function Navbar() {

@@ -1,3 +1,4 @@
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
@@ -8,13 +9,16 @@ import SkincareQuiz from "@/components/SkincareQuiz";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import SocialFeed from "@/components/SocialFeed";
 import FAQSection from "@/components/FAQSection";
+import LoyaltyTeaser from "@/components/LoyaltyTeaser";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
+import RecentlyViewed from "@/components/RecentlyViewed";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <AnnouncementBar />
       <Navbar />
       <HeroSection />
       <StorySection />
@@ -25,9 +29,11 @@ export default function Home() {
       <BeforeAfterGallery />
       <SocialFeed />
       <FAQSection />
+      <LoyaltyTeaser />
       <TestimonialsSection />
       <Footer />
       <ScrollToTop />
+      <RecentlyViewed />
     </div>
   );
 }
