@@ -6,8 +6,10 @@ import IngredientsSection from "@/components/IngredientsSection";
 import BundlesSection from "@/components/BundlesSection";
 import SkincareQuiz from "@/components/SkincareQuiz";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
+import SocialFeed from "@/components/SocialFeed";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
@@ -20,8 +22,10 @@ export default function Home() {
       <SkincareQuiz />
       <BundlesSection />
       <BeforeAfterGallery />
+      <SocialFeed />
       <TestimonialsSection />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 }

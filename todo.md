@@ -1,8 +1,9 @@
-# Skintilla Beauty - New Features
+# Skintilla Beauty - New Features (Round 3)
 
-- [x] Generate Before & After images (3 sets of before/after pairs)
-- [x] Build Skincare Quiz component with interactive questions and product recommendations
-- [x] Build Before & After gallery component with slider/toggle reveal
-- [x] Integrate both sections into Home.tsx
-- [x] Test all sections render correctly
-- [x] Save checkpoint and deliver
+- [ ] Generate 6 Instagram-style social proof photos (user-generated content aesthetic)
+- [ ] Build ScrollToTop floating button component
+- [ ] Build ProductDetailModal component with ingredients, usage, and reviews
+- [ ] Build SocialFeed Instagram-style grid component
+- [ ] Integrate all components into the page
+- [ ] Test all features work correctly
+- [ ] Save checkpoint and deliver

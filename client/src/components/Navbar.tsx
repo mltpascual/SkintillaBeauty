@@ -13,6 +13,7 @@ const navLinks = [
   { label: "Quiz", href: "#quiz" },
   { label: "Bundles", href: "#bundles" },
   { label: "Results", href: "#results" },
+  { label: "Community", href: "#community" },
 ];
 
 export default function Navbar() {
