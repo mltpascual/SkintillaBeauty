@@ -7,6 +7,7 @@ import BundlesSection from "@/components/BundlesSection";
 import SkincareQuiz from "@/components/SkincareQuiz";
 import BeforeAfterGallery from "@/components/BeforeAfterGallery";
 import SocialFeed from "@/components/SocialFeed";
+import FAQSection from "@/components/FAQSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -23,6 +24,7 @@ export default function Home() {
       <BundlesSection />
       <BeforeAfterGallery />
       <SocialFeed />
+      <FAQSection />
       <TestimonialsSection />
       <Footer />
       <ScrollToTop />

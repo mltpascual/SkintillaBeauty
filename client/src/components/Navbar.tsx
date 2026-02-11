@@ -14,6 +14,7 @@ const navLinks = [
   { label: "Bundles", href: "#bundles" },
   { label: "Results", href: "#results" },
   { label: "Community", href: "#community" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export default function Navbar() {

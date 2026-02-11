@@ -1,6 +1,7 @@
 /**
  * ProductDetailModal — Botanical Atelier Design
  * Full-detail modal with ingredients, usage, reviews.
+ * Sticky "Add to Cart" bar on mobile for improved conversion.
  * Uses Radix Dialog for accessibility.
  */
 
@@ -12,7 +13,8 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { Star, Droplets, Leaf, Clock, X } from "lucide-react";
+import { Star, Droplets, Leaf, Clock, ShoppingBag } from "lucide-react";
+import { toast } from "sonner";
 
 export interface ProductData {
   name: string;
@@ -49,6 +51,12 @@ export default function ProductDetailModal({
     product.reviews.reduce((s, r) => s + r.rating, 0) /
     (product.reviews.length || 1);
 
+  const handleAddToCart = () => {
+    toast.success(`${product.name} added to cart!`, {
+      description: `${product.size} — ${product.price}`,
+    });
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-3xl p-0 overflow-hidden border-none bg-[oklch(0.97_0.008_80)] max-h-[90vh] overflow-y-auto">
@@ -79,8 +87,8 @@ export default function ProductDetailModal({
             </div>
           </div>
 
-          {/* Info */}
-          <div className="p-8 md:p-10 flex flex-col">
+          {/* Info — add bottom padding on mobile for sticky bar */}
+          <div className="p-8 md:p-10 pb-28 md:pb-10 flex flex-col">
             <div className="mb-6">
               <h2
                 className="text-[clamp(1.6rem,3vw,2.2rem)] font-semibold text-[oklch(0.25_0.03_55)] leading-tight mb-2"
@@ -315,12 +323,41 @@ export default function ProductDetailModal({
               </motion.div>
             </AnimatePresence>
 
-            {/* CTA */}
+            {/* Desktop CTA — hidden on mobile (sticky bar replaces it) */}
             <button
-              onClick={() => onOpenChange(false)}
-              className="mt-6 w-full py-3.5 text-[0.7rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)]"
+              onClick={handleAddToCart}
+              className="hidden md:flex mt-6 w-full py-3.5 items-center justify-center gap-2 text-[0.7rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)]"
               style={{ fontFamily: "var(--font-body)" }}
             >
+              <ShoppingBag className="h-4 w-4" />
+              Add to Cart
+            </button>
+          </div>
+        </div>
+
+        {/* Sticky Add to Cart bar — mobile only */}
+        <div className="md:hidden sticky bottom-0 left-0 right-0 z-10 bg-[oklch(0.97_0.008_80)] border-t border-[oklch(0.88_0.02_80)] px-6 py-4 shadow-[0_-4px_20px_oklch(0.25_0.03_55/0.08)]">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col">
+              <span
+                className="text-[0.75rem] text-[oklch(0.55_0.03_55)] font-light"
+                style={{ fontFamily: "var(--font-body)" }}
+              >
+                {product.name}
+              </span>
+              <span
+                className="text-[1.2rem] font-semibold text-[oklch(0.38_0.04_145)]"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {product.price}
+              </span>
+            </div>
+            <button
+              onClick={handleAddToCart}
+              className="flex items-center gap-2 px-6 py-3 text-[0.65rem] font-medium tracking-[0.2em] uppercase transition-all duration-300 bg-[oklch(0.38_0.04_145)] text-[oklch(0.97_0.008_80)] hover:bg-[oklch(0.32_0.04_145)] active:scale-[0.97]"
+              style={{ fontFamily: "var(--font-body)" }}
+            >
+              <ShoppingBag className="h-4 w-4" />
               Add to Cart
             </button>
           </div>

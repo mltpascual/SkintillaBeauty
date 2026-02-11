@@ -1,9 +1,8 @@
-# Skintilla Beauty - New Features (Round 3)
+# Skintilla Beauty - New Features (Round 4)
 
-- [ ] Generate 6 Instagram-style social proof photos (user-generated content aesthetic)
-- [ ] Build ScrollToTop floating button component
-- [ ] Build ProductDetailModal component with ingredients, usage, and reviews
-- [ ] Build SocialFeed Instagram-style grid component
-- [ ] Integrate all components into the page
-- [ ] Test all features work correctly
+- [ ] Add sticky "Add to Cart" bar to ProductDetailModal for mobile
+- [ ] Build FAQ/Accordion section with common questions
+- [ ] Add countdown timer to BundlesSection for limited-time promotion
+- [ ] Integrate FAQ section into Home.tsx
+- [ ] Test all features
 - [ ] Save checkpoint and deliver

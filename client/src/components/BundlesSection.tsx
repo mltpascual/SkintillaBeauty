@@ -2,10 +2,12 @@
  * Skintilla Beauty — Botanical Atelier Design
  * Bundles: Gift set showcase with editorial layout
  * Full-bleed image, overlaid pricing cards, gold accents
+ * Now with countdown timer for seasonal promotion
  */
+import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { toast } from "sonner";
-import { Gift, Sparkles, Package } from "lucide-react";
+import { Gift, Sparkles, Package, Timer } from "lucide-react";
 
 const BUNDLE_IMAGE =
   "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-5_1770802544000_na1fn_YnVuZGxlLWdpZnQ.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTVfMTc3MDgwMjU0NDAwMF9uYTFmbl9ZblZ1Wkd4bExXZHBablEuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=dgoN9y89clWHP0Vl4nY7cZf4JcjIDlC7UwubB5PO5PbN2AF8OMPwG0pHR0TU~S9r5BFtyiOA70mHKzOP7M0TPAOtTn1ImFuTuubnf-HLYZG9OboB8NlFIi7DjwZ-OgIpIPMQXQ5ITT7HFEeU0hEhXEQw1GAjLpIbQ1ts9Ie0YbQrNebgiTMzkFlraog3olVjSrjEq10gKfK8XZITFU2mRi4nyFl1b-3IXtk9z0LpHgZvZOGM1-jJ41mpOo2efoCp-71STOurKALAza~90BwbTNp2P4yp6iOY1cSsH~Ot9xpiYlSCauDObxJXfjL0V90xuRDTXWEUYU3trRMiWfJ8ng__";
@@ -42,8 +44,58 @@ const bundles = [
   },
 ];
 
+/** Returns a target date that is always ~3 days in the future from now,
+ *  anchored to midnight so it resets predictably. */
+function getPromoEndDate(): Date {
+  const now = new Date();
+  const end = new Date(now);
+  end.setDate(end.getDate() + 3);
+  end.setHours(23, 59, 59, 0);
+  return end;
+}
+
+function useCountdown(target: Date) {
+  const calc = () => {
+    const diff = Math.max(0, target.getTime() - Date.now());
+    return {
+      days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+      hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+      minutes: Math.floor((diff / (1000 * 60)) % 60),
+      seconds: Math.floor((diff / 1000) % 60),
+    };
+  };
+  const [time, setTime] = useState(calc);
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc), 1000);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  return time;
+}
+
+function CountdownUnit({ value, label }: { value: number; label: string }) {
+  return (
+    <div className="flex flex-col items-center">
+      <span
+        className="text-[clamp(1.4rem,3vw,2rem)] font-semibold text-[oklch(0.38_0.04_145)] leading-none tabular-nums"
+        style={{ fontFamily: "var(--font-display)" }}
+      >
+        {String(value).padStart(2, "0")}
+      </span>
+      <span
+        className="text-[0.55rem] font-medium tracking-[0.2em] uppercase text-[oklch(0.55_0.03_55)] mt-1"
+        style={{ fontFamily: "var(--font-body)" }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
 export default function BundlesSection() {
   const sectionRef = useScrollReveal();
+  const [promoEnd] = useState(getPromoEndDate);
+  const { days, hours, minutes, seconds } = useCountdown(promoEnd);
 
   return (
     <section
@@ -54,7 +106,7 @@ export default function BundlesSection() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         {/* Header */}
-        <div className="text-center mb-16 lg:mb-20 stagger-children">
+        <div className="text-center mb-10 lg:mb-14 stagger-children">
           <div className="fade-up flex items-center justify-center gap-6 mb-6">
             <div className="gold-divider w-[80px]" />
             <span
@@ -81,6 +133,71 @@ export default function BundlesSection() {
             Complete skincare rituals, thoughtfully bundled for every routine.
             The perfect gift — for yourself or someone you love.
           </p>
+        </div>
+
+        {/* Countdown Timer Banner */}
+        <div className="fade-up mb-14 lg:mb-18">
+          <div
+            className="relative overflow-hidden border border-[oklch(0.72_0.10_80/0.4)] px-6 py-6 lg:py-7"
+            style={{ background: "oklch(0.95 0.02 80)" }}
+          >
+            {/* Subtle corner accents */}
+            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[oklch(0.72_0.10_80/0.5)]" />
+            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[oklch(0.72_0.10_80/0.5)]" />
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-5 md:gap-10">
+              {/* Label */}
+              <div className="flex items-center gap-3">
+                <Timer
+                  className="h-5 w-5 text-[oklch(0.72_0.10_80)]"
+                  strokeWidth={1.5}
+                />
+                <div className="text-center md:text-left">
+                  <p
+                    className="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-[oklch(0.72_0.10_80)]"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    Spring Glow Sale
+                  </p>
+                  <p
+                    className="text-[0.8rem] text-[oklch(0.40_0.03_55)] font-light"
+                    style={{ fontFamily: "var(--font-body)" }}
+                  >
+                    Extra 15% off all bundles — limited time
+                  </p>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <div className="hidden md:block w-px h-10 bg-[oklch(0.72_0.10_80/0.3)]" />
+
+              {/* Countdown */}
+              <div className="flex items-center gap-4">
+                <CountdownUnit value={days} label="Days" />
+                <span
+                  className="text-[1.2rem] text-[oklch(0.72_0.10_80)] font-light -mt-3"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  :
+                </span>
+                <CountdownUnit value={hours} label="Hours" />
+                <span
+                  className="text-[1.2rem] text-[oklch(0.72_0.10_80)] font-light -mt-3"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  :
+                </span>
+                <CountdownUnit value={minutes} label="Mins" />
+                <span
+                  className="text-[1.2rem] text-[oklch(0.72_0.10_80)] font-light -mt-3"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  :
+                </span>
+                <CountdownUnit value={seconds} label="Secs" />
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Layout: Image + Bundle Cards */}
