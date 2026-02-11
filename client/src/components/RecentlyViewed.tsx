@@ -73,10 +73,19 @@ export default function RecentlyViewed() {
         isExpanded ? "translate-y-0" : "translate-y-[calc(100%-44px)]"
       }`}
     >
-      {/* Toggle bar */}
-      <button
+      {/* Toggle bar — uses a div with two separate interactive children to avoid nested buttons */}
+      <div
+        className="w-full flex items-center justify-between px-6 lg:px-10 h-11 bg-[oklch(0.25_0.03_55)] border-t border-[oklch(0.72_0.10_80/0.2)] hover:bg-[oklch(0.28_0.03_55)] transition-colors duration-200 cursor-pointer"
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="w-full flex items-center justify-between px-6 lg:px-10 h-11 bg-[oklch(0.25_0.03_55)] border-t border-[oklch(0.72_0.10_80/0.2)] hover:bg-[oklch(0.28_0.03_55)] transition-colors duration-200"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setIsExpanded((prev) => !prev);
+          }
+        }}
+        aria-label={isExpanded ? "Collapse recently viewed" : "Expand recently viewed"}
       >
         <div className="flex items-center gap-2.5">
           <Clock className="w-3.5 h-3.5 text-[oklch(0.72_0.10_80)]" />
@@ -93,18 +102,27 @@ export default function RecentlyViewed() {
               isExpanded ? "rotate-90" : "-rotate-90"
             }`}
           />
-          <button
+          <span
+            role="button"
+            tabIndex={0}
             onClick={(e) => {
               e.stopPropagation();
               setIsVisible(false);
             }}
-            className="text-[oklch(0.60_0.03_55)] hover:text-[oklch(0.85_0.01_80)] transition-colors duration-200"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.stopPropagation();
+                e.preventDefault();
+                setIsVisible(false);
+              }
+            }}
+            className="text-[oklch(0.60_0.03_55)] hover:text-[oklch(0.85_0.01_80)] transition-colors duration-200 cursor-pointer"
             aria-label="Dismiss recently viewed"
           >
             <X className="w-3.5 h-3.5" />
-          </button>
+          </span>
         </div>
-      </button>
+      </div>
 
       {/* Product strip */}
       <div className="bg-[oklch(0.22_0.03_55)] border-t border-[oklch(0.72_0.10_80/0.1)] overflow-hidden">

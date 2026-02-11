@@ -15,9 +15,9 @@ const navLinks = [
   { label: "Products", href: "#products" },
   { label: "Ingredients", href: "#ingredients" },
   { label: "Quiz", href: "#quiz" },
+  { label: "Routine", href: "#routine" },
   { label: "Bundles", href: "#bundles" },
-  { label: "Results", href: "#results" },
-  { label: "Community", href: "#community" },
+  { label: "Journal", href: "#journal" },
   { label: "FAQ", href: "#faq" },
   { label: "Rewards", href: "#rewards" },
 ];
