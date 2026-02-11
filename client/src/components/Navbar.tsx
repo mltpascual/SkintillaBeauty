@@ -10,8 +10,9 @@ const navLinks = [
   { label: "Our Story", href: "#story" },
   { label: "Products", href: "#products" },
   { label: "Ingredients", href: "#ingredients" },
+  { label: "Quiz", href: "#quiz" },
   { label: "Bundles", href: "#bundles" },
-  { label: "Testimonials", href: "#testimonials" },
+  { label: "Results", href: "#results" },
 ];
 
 export default function Navbar() {
