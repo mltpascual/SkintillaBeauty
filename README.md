@@ -153,6 +153,19 @@ skintilla-beauty/
 │   └── index.ts                # Express server for production (serves static files)
 ├── vercel.json                 # Vercel deployment configuration
 ├── DESIGN.md                   # Complete design system documentation
+├── DEVELOPMENT_GUIDELINES.md   # Coding standards and best practices
+├── conductor/                  # Project context artifacts
+│   ├── index.md                # Context hub and navigation
+│   ├── product.md              # Product vision, users, roadmap
+│   ├── product-guidelines.md   # Brand voice and copy standards
+│   ├── tech-stack.md           # Technology choices and dependencies
+│   ├── workflow.md             # Development practices and conventions
+│   └── tracks.md               # Work unit registry and history
+├── C4-Documentation/           # Architecture documentation (C4 model)
+│   ├── c4-context.md           # System context with personas and journeys
+│   ├── c4-container.md         # Container-level deployment architecture
+│   ├── c4-component.md         # Component index and relationships
+│   └── c4-component-*.md       # Detailed component documentation
 ├── package.json                # Dependencies and scripts
 ├── tsconfig.json               # TypeScript configuration
 └── vite.config.ts              # Vite build configuration
@@ -335,6 +348,22 @@ The project follows WCAG 2.1 AA guidelines:
 | Edge | 90+ |
 
 The project uses modern CSS features (OKLCH colors, `clip-path`, CSS custom properties) that require relatively recent browser versions.
+
+---
+
+## Documentation
+
+The project includes a comprehensive documentation suite:
+
+| Document | Purpose |
+|----------|--------|
+| [DESIGN.md](./DESIGN.md) | Visual design system — colors, typography, layout, animations |
+| [DEVELOPMENT_GUIDELINES.md](./DEVELOPMENT_GUIDELINES.md) | Coding standards synthesized from 8 specialized development skills |
+| [conductor/product.md](./conductor/product.md) | Product vision, target users, features, and roadmap |
+| [conductor/tech-stack.md](./conductor/tech-stack.md) | Technology choices, dependencies, and architecture decisions |
+| [conductor/workflow.md](./conductor/workflow.md) | Development practices, conventions, and deployment procedures |
+| [C4-Documentation/c4-context.md](./C4-Documentation/c4-context.md) | System context with personas and user journeys |
+| [C4-Documentation/c4-component.md](./C4-Documentation/c4-component.md) | Component architecture and relationship diagrams |
 
 ---
 
