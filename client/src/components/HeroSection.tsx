@@ -8,7 +8,7 @@ import { useTheme } from "@/contexts/ThemeContext";
 import { useParallax } from "@/hooks/useParallax";
 
 const HERO_IMAGE =
-  "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-1_1770802538000_na1fn_aGVyby1iYW5uZXI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTFfMTc3MDgwMjUzODAwMF9uYTFmbl9hR1Z5YnkxaVlXNXVaWEkuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=hkfKo271XUg7hZ9DxlY2p4M-VYNP0KhJ6G12xUrdh24a8IlWTpAmnV0qe1IwNRwmWhtx950ZBY1sh9C67biTa8iDnpbV9wpp0f~4U2stuOBoqjtseRULppGYFFlj33HIPYS7mY8btKoZXRFzdL-PoFPDHZ0chIIyTJnEl9s-CpTIfnE3fbYz4jEmxBabwG9SvgSrJnJ8FYXMbOzEzlDj6v0obbVWKKATj6lL3eK~-8ov~iSyGD62cdGfnmtP6Dho7MMHQCXVzgZvhOF3sWm81nYQvkY4cLy1-nTkgO~p9uwaYdtDhl1JONAE8ql9WySISjFN20ODVMikctNLNOGvUA__";
+  "https://raw.githubusercontent.com/mltpascual/SkintillaBeauty/main/client/public/images/hero-banner.jpg";
 
 export default function HeroSection() {
   const sectionRef = useScrollReveal(0.1);

@@ -16,7 +16,7 @@ import { CompareCheckbox, comparableProducts } from "@/components/ProductCompari
 import { useParallax } from "@/hooks/useParallax";
 
 const PRODUCT_IMAGE =
-  "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/AYB0LnWgHFt76y2h1QDWTu-img-2_1770802535000_na1fn_cHJvZHVjdC1jb2xsZWN0aW9u.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L0FZQjBMbldnSEZ0NzZ5MmgxUURXVHUtaW1nLTJfMTc3MDgwMjUzNTAwMF9uYTFmbl9jSEp2WkhWamRDMWpiMnhzWldOMGFXOXUuanBnP3gtb3NzLXByb2Nlc3M9aW1hZ2UvcmVzaXplLHdfMTkyMCxoXzE5MjAvZm9ybWF0LHdlYnAvcXVhbGl0eSxxXzgwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNzk4NzYxNjAwfX19XX0_&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=cKPfrKtJGK0XG9WglSaJ-uYoUWSR2zYq6D6a76L0hNbf9yJXto9Ct1xpoc7Lj35E7FWLmUnrozRRFlbM-drdq1PfXKfZccnK99Xwoo89pDg~gBRHfqhy5nIkWMUmyf1ooNSObB5XST2TvJQmFuWzN1iRyybyf7gSnQOPUNifwBZwuvGy8dT91ndTCpub1UEUGVXfqe4Sc1LLRnjgFpWfFCCLUyKCdfq7ZCyqRsBUwAb-2ToPDXHaGaHdaQ32oZ4Zo3sqriKXUarrfn1zfbFB8j3-EraYRbffSkWQO8jEdbBGgQCq8a17CPakp2d6K64Mc2dX4L4cuAE-ysfKLgiO~Q__";
+  "https://raw.githubusercontent.com/mltpascual/SkintillaBeauty/main/client/public/images/product-collection.jpg";
 
 const products: (ProductData & { videoSrc: string; isNew?: boolean })[] = [
   {

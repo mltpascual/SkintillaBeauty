@@ -23,7 +23,7 @@ interface TransformationStory {
 const transformations: TransformationStory[] = [
   {
     image:
-      "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/O0KqIqJmCeC1PKsQCpUNnu-img-1_1770803498000_na1fn_YmVmb3JlLWFmdGVyLTE.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L08wS3FJcUptQ2VDMVBLc1FDcFVObnUtaW1nLTFfMTc3MDgwMzQ5ODAwMF9uYTFmbl9ZbVZtYjNKbExXRm1kR1Z5TFRFLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=MxMpwOHqJk5rn2NoupNKGD16y11oU1GLGVfxfQei1rNJVs6yb3PKamCg2N-ZUsSuThgnIr5VEd1P3hnuCyakHg2cDCLhwygiIO4NEdyiH9SaSP933zO5P7JHyiYaNOfE-aLIHOvtQcWyEn3y8fF0ySqOQ1d0xtWovTrpBzRKcUUrUQgmCpq3h4R2sgdMoL1SQURzi2vd3CSLydRkyUEKj7oLD5VZCEkR4KjPOaq6UROpuCA1Uw0EZtsXYVFHhOGrfr98x8wOA87lbEw~PUD0WMOYvtFkUl6BhFGsPnesVbbFHyiSKjmQ1ypA1YdgdEiA-WOc8BiqdY6wIBK1LbX~Wg__",
+      "https://raw.githubusercontent.com/mltpascual/SkintillaBeauty/main/client/public/images/before-after-1.jpg",
     name: "Mei L.",
     age: "28",
     concern: "Uneven skin tone & blemishes",
@@ -34,7 +34,7 @@ const transformations: TransformationStory[] = [
   },
   {
     image:
-      "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/O0KqIqJmCeC1PKsQCpUNnu-img-2_1770803505000_na1fn_YmVmb3JlLWFmdGVyLTI.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L08wS3FJcUptQ2VDMVBLc1FDcFVObnUtaW1nLTJfMTc3MDgwMzUwNTAwMF9uYTFmbl9ZbVZtYjNKbExXRm1kR1Z5TFRJLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=owVhozbzA9jprYW13qJPJfqitkJD737kpEM3RoeI1a9cuqOUcPrbSkIUvpkHc8DPlip79aS-aeequt6fmTVXdRQgkOWOaMDxC~22v~ZAsmxE4o-AMkp4qsjnRsTZeAC8z8e5cdRdldh3amcTfvVsUWcDmpjoQkGcWPUfDfhUFMBZIt5mQnG8lYSvtUe80CLFLZS36CGWnmN7W1W~let6Wkhm4ybJN0UAjN50Mh3DoD9fD9GKkB7FkZLitosHl-SxAnPb5CpiAtKidm3V6fJNNJ-hQ7oKBvThU1LVO5UohEyRF1MVhhKbvrq5lW6qyB9O3HTEL1k6GC-aS1ZYvn3Hrw__",
+      "https://raw.githubusercontent.com/mltpascual/SkintillaBeauty/main/client/public/images/before-after-2.jpg",
     name: "Catherine D.",
     age: "42",
     concern: "Fine lines & tired-looking skin",
@@ -45,7 +45,7 @@ const transformations: TransformationStory[] = [
   },
   {
     image:
-      "https://private-us-east-1.manuscdn.com/sessionFile/3ocyoQdcxp9Sw7E1buR1nN/sandbox/O0KqIqJmCeC1PKsQCpUNnu-img-3_1770803531000_na1fn_YmVmb3JlLWFmdGVyLTM.jpg?x-oss-process=image/resize,w_1920,h_1920/format,webp/quality,q_80&Expires=1798761600&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9wcml2YXRlLXVzLWVhc3QtMS5tYW51c2Nkbi5jb20vc2Vzc2lvbkZpbGUvM29jeW9RZGN4cDlTdzdFMWJ1UjFuTi9zYW5kYm94L08wS3FJcUptQ2VDMVBLc1FDcFVObnUtaW1nLTNfMTc3MDgwMzUzMTAwMF9uYTFmbl9ZbVZtYjNKbExXRm1kR1Z5TFRNLmpwZz94LW9zcy1wcm9jZXNzPWltYWdlL3Jlc2l6ZSx3XzE5MjAsaF8xOTIwL2Zvcm1hdCx3ZWJwL3F1YWxpdHkscV84MCIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTc5ODc2MTYwMH19fV19&Key-Pair-Id=K2HSFNDJXOU9YS&Signature=auRot4NzxcGA226-8U8LEqheNKPRy1rVBfPa~lmbFtkFBjP-6WoanSXwD01ZNjBKtzVnNGB7~OU~M6JX4zPP8AMGFZrdu0BTmj6R4-NO8r75bg6uVXWjxEh9kh7NYUanoi4d0~9pFuw6x7jLknHsEy3afGVqqyyZPASweqH1FG3rr3AUS16zTsBfFH~zpbdZDAha9EuPQx0NuLLDmRbSNT8yG-w9cAp19beIDdkQsFybSujXnrU8xim0w~ems7lWGM19Ge4ZAzQVUvt9bjIF6-kU53wSuAGlCHdSb2Glg70GO4WLoB3O38Y8hyIBjiUlM-QjRJUbqAq-PwVlncRBsw__",
+      "https://raw.githubusercontent.com/mltpascual/SkintillaBeauty/main/client/public/images/before-after-3.jpg",
     name: "Aisha T.",
     age: "35",
     concern: "Hyperpigmentation & uneven texture",
